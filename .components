@@ -1,0 +1,9 @@
+---
+:orm: activerecord
+:test: none
+:mock: none
+:script: jquery
+:renderer: slim
+:stylesheet: none
+:namespace: PromoplatformPadrino
+:migration_format: number
