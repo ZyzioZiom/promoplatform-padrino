@@ -6,6 +6,11 @@ module PromoplatformPadrino
 
     enable :sessions
 
+    # google omniauth2 
+    use OmniAuth::Builder do
+      provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+    end
+    
     ##
     # Caching support.
     #
@@ -68,6 +73,12 @@ module PromoplatformPadrino
       "Hello World!"
     end
 
+    
+    # google redirect after login
+    get '/auth/google_oauth2/callback' do
+      "Log in success!"
+    end
+    
     
   end
 end
