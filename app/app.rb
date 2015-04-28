@@ -6,9 +6,12 @@ module PromoplatformPadrino
 
     enable :sessions
 
-    # google omniauth2 
+    # google omniauth2 login
     use OmniAuth::Builder do
-      provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+      provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
+      {
+        :image_size => 200 # increase image size to 200px
+      }
     end
     
     ##
@@ -70,15 +73,10 @@ module PromoplatformPadrino
     
     
     get "/" do
-      "Hello World!"
+      link_to "Login", url("/auth/google_oauth2")
     end
 
     
-    # google redirect after login
-    get '/auth/google_oauth2/callback' do
-      "Log in success!"
-    end
-    
-    
+      
   end
 end
