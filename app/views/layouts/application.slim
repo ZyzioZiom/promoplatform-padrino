@@ -1,0 +1,23 @@
+doctype html
+
+html style = "width:100%; height:100%; padding:0; margin:0;"
+
+  head
+    title Promoplatforma
+
+
+  body style = "width:100%; height:100%; padding:0; margin:0; font-family:Ubuntu; background: url(http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-133966.jpg) no-repeat top center; background-size: cover; background-attachment: fixed;"
+    div style = "width:20%; height:100%; padding: 20px; box-sizing: border-box; ms-box-sizing: border-box; webkit-box-sizing: border-box; moz-box-sizing: border-box; float:left; background: rgba(150, 150, 150, 0.1);"
+      = partial 'layouts/sidebar'
+      
+    div style = "width:80%; float:right;"
+      div style = "padding:10px; background: rgba(230,230,230,0.6);"
+
+
+          p
+            = link_to "Strona główna", "/"
+            |
+
+
+      div style = "padding: 20px;"
+        = yield

@@ -6,6 +6,8 @@ module PromoplatformPadrino
 
     enable :sessions
 
+   
+    
     # google omniauth2 login
     use OmniAuth::Builder do
       provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
@@ -73,10 +75,26 @@ module PromoplatformPadrino
     
     
     get "/" do
-      link_to "Login", url("/auth/google_oauth2")
+      if session[:user]
+        redirect_to '/home'
+      else
+        render 'login', :layout => :welcome
+      end
     end
 
+    get '/auth/confirmed' do
+      render "confirmed", :layout => :application
+    end
     
+    get '/accounts' do
+      accounts = JSON.parse(Account.all.to_json)
       
+      JSON.pretty_generate(accounts)
+    end
+    
+    get '/home' do
+      render 'home', :layout => :application
+    end
+    
   end
 end

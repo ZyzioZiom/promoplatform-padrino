@@ -1,0 +1,8 @@
+h1= "Witaj #{session[:user]['name']}"
+-if session[:user]
+  = session[:user].inspect
+end
+
+img src = session[:user].image style = "border-radius: 50%;"
+
+p= $test_variable
