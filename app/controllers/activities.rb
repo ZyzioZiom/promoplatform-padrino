@@ -9,7 +9,7 @@ PromoplatformPadrino::App.controllers :activities do
   get :index, :with => :id do
     case params[:id]
       when 'leaflets'
-        @activities = Activity.where(category: "leaflet").order(:date, :hour)
+        @activities = Activity.where(category: "leaflet").order(:date, :hour).group_by(&:date)
         unless @activities.nil?
           render 'activities/index'
         end
