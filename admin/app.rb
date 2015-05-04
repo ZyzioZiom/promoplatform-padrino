@@ -33,6 +33,8 @@ module PromoplatformPadrino
     end
 
     access_control.roles_for :admin do |role|
+      role.project_module :actions, '/actions'
+      role.project_module :activities, '/activities'
       role.project_module :accounts, '/accounts'
     end
 

@@ -1,0 +1,4 @@
+activity
+  .title= link_to activity.name, url_for(:activities, :index, :id => activity)
+  .date= time_ago_in_words(activity.created_at || Time.now) + ' ago'
+  .body= simple_format(activity.description)

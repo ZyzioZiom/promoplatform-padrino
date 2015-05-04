@@ -41,15 +41,17 @@ PromoplatformPadrino::App.controllers :auth do
       password = ::BCrypt::Password.create(email)
       password = password.force_encoding(Encoding::UTF_8) if password.encoding == Encoding::ASCII_8BIT
       
-      # create new user
       new_user = Account.create(uid: uid, email: email, name: first_name, surname: last_name, image: image, role: "user", crypted_password: password)
       
-      session[:user] = new_user
+      @user = Account.where(id: new_user.id).first
+      session[:current_user] = @user
+      
+      # TODO: send welcome email
       
       redirect_to 'home'
     else
       
-      session[:user] = @user
+      session[:current_user] = @user
       
       redirect_to 'home'
     end
@@ -60,4 +62,13 @@ PromoplatformPadrino::App.controllers :auth do
     flash[:error] = "Error logging with Google #{params[:message]}"
 
   end
+
+
+  # logout user and redirect to welcome page
+    get :logout, :map => "/logout" do
+    session.clear
+    redirect_to '/'
+  end
+
+
 end

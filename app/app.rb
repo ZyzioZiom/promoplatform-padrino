@@ -5,8 +5,6 @@ module PromoplatformPadrino
     register Padrino::Helpers
 
     enable :sessions
-
-   
     
     # google omniauth2 login
     use OmniAuth::Builder do
@@ -41,7 +39,7 @@ module PromoplatformPadrino
     #
     # set :raise_errors, true       # Raise exceptions (will stop application) (default for test)
     # set :dump_errors, true        # Exception backtraces are written to STDERR (default for production/development)
-    # set :show_exceptions, true    # Shows a stack trace in browser (default for development)
+     set :show_exceptions, true    # Shows a stack trace in browser (default for development)
     # set :logging, true            # Logging in STDOUT for development and file for production (default only for development)
     # set :public_folder, 'foo/bar' # Location for static assets (default root/public)
     # set :reload, false            # Reload application files (default in development)
@@ -72,13 +70,19 @@ module PromoplatformPadrino
     #     render 'errors/500'
     #   end
     #
+#    after do
+#      unless request.path.include? 'login'
+#        unless session[:current_user]
+#          redirect_to '/login'
+#        end
+#      end
+#    end
     
-    
-    get "/" do
-      if session[:user]
-        redirect_to '/home'
+    get :index do
+      if session[:current_user]
+        redirect_to :home
       else
-        render 'login', :layout => :welcome
+        redirect_to :login
       end
     end
 
@@ -86,13 +90,17 @@ module PromoplatformPadrino
       render "confirmed", :layout => :application
     end
     
-    get '/accounts' do
+    get :login do
+      render 'login', :layout => :welcome
+    end
+    
+    get :accounts do
       accounts = JSON.parse(Account.all.to_json)
       
       JSON.pretty_generate(accounts)
     end
     
-    get '/home' do
+    get :home do
       render 'home', :layout => :application
     end
     

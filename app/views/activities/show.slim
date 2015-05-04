@@ -1,0 +1,13 @@
+#show
+  .activity
+    .title= @activity.name
+    .date= @activity.date
+    .body= simple_format(@activity.description)    
+    
+    p= @activity.inspect
+    
+    p= @activity.id
+
+
+
+=partial 'activities/signup_form'

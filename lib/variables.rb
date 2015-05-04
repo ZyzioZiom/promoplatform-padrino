@@ -9,4 +9,4 @@
 #  end
 #end
 
-$test_variable = "testvar"
+$test_variable = "global testvar"

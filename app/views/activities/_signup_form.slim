@@ -1,0 +1,3 @@
+= form_for :action, url(:actions, :create), :class => 'form-horizontal' do |f|
+    = f.hidden_field :activity_id, :value => @activity.id
+    = f.submit "Zapisz się na aktywność"

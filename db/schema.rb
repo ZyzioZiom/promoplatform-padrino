@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 4) do
+ActiveRecord::Schema.define(version: 7) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -25,8 +25,18 @@ ActiveRecord::Schema.define(version: 4) do
     t.string   "image"
   end
 
+  create_table "actions", force: :cascade do |t|
+    t.integer  "account_id"
+    t.integer  "activity_id"
+    t.boolean  "confirmed"
+    t.string   "confirmation"
+    t.integer  "points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "activities", force: :cascade do |t|
-    t.string   "type"
+    t.string   "category"
     t.time     "hour"
     t.string   "day"
     t.date     "date"
