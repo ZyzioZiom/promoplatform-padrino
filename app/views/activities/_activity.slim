@@ -1,19 +1,21 @@
 activity
-
+=@activities.inspect
 -# sort activities by day
 -@activities.each do |date, activities|
   -# now we have array of activities in one day
   p= l(date, :format => '%A, %d %b %Y')
-  
+  =activities.inspect
+  hr
+  hr
   table
     tr
-      -activities.each do |activity|
-        td
-          .title= link_to activity.name, url_for(:activities, :index, :id => activity)
-          -if activity.hour
-            .hour= activity.hour.strftime("%H:%M")
-          .day= activity.day
-          .date= l(activity.date, :format => '%A, %d %b %Y')
-          .place= activity.place
-          
-  hr
+/      -activities.each do |activity|
+/        td
+/          .title= link_to activity.name, url_for(:activities, :index, :id => activity)
+/          -if activity.hour
+/            .hour= activity.hour.strftime("%H:%M")
+/          .day= activity.day
+/          .date= l(activity.date, :format => '%A, %d %b %Y')
+/          .place= activity.place
+/          
+/  hr
