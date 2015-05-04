@@ -1,3 +1,16 @@
-= form_for :action, url(:actions, :create), :class => 'form-horizontal' do |f|
+-if @current_user_signed
+
+  -if @current_user_signed.confirmed
+    p= $activity_confirmed
+  -else
+  
+    = form_for :action, url(:actions, :update), :class => 'form-horizontal' do |f|
+      = f.hidden_field :activity_id, :value => @activity.id
+      = f.text_field :confirmation, :type => 'url'
+      = f.submit "Potwierdź swoją aktywność"
+-else
+
+  = form_for :action, url(:actions, :create), :class => 'form-horizontal' do |f|
     = f.hidden_field :activity_id, :value => @activity.id
     = f.submit "Zapisz się na aktywność"
+    

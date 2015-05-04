@@ -23,4 +23,17 @@ PromoplatformPadrino::App.controllers :actions do
     end
   end
   
+  post :update do
+    activity_id = params[:action][:activity_id].to_i
+    
+    @action = Action.where(activity_id: activity_id, account_id: session[:current_user].id).first
+    
+    @action.confirmed = true
+    @action.confirmation = params[:action][:confirmation]
+    
+    if @action.save
+      redirect back
+    end
+  end
+  
 end

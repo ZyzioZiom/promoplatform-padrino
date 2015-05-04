@@ -1,4 +1,7 @@
 activity
   .title= link_to activity.name, url_for(:activities, :index, :id => activity)
-  .date= time_ago_in_words(activity.created_at || Time.now) + ' ago'
-  .body= simple_format(activity.description)
+  -if activity.hour
+    .hour= activity.hour.strftime("%H:%M")
+  .day= activity.day
+  .date= l(activity.date, :format => '%A, %d %b %Y')
+  .place= activity.place

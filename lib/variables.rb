@@ -10,3 +10,5 @@
 #end
 
 $test_variable = "global testvar"
+
+$activity_confirmed = "Twoja aktywność została potwierdzona, a punkty przyznane. Gratki!"

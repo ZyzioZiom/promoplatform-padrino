@@ -39,7 +39,7 @@ module PromoplatformPadrino
     #
     # set :raise_errors, true       # Raise exceptions (will stop application) (default for test)
     # set :dump_errors, true        # Exception backtraces are written to STDERR (default for production/development)
-     set :show_exceptions, true    # Shows a stack trace in browser (default for development)
+    # set :show_exceptions, true    # Shows a stack trace in browser (default for development)
     # set :logging, true            # Logging in STDOUT for development and file for production (default only for development)
     # set :public_folder, 'foo/bar' # Location for static assets (default root/public)
     # set :reload, false            # Reload application files (default in development)
@@ -70,13 +70,15 @@ module PromoplatformPadrino
     #     render 'errors/500'
     #   end
     #
-#    after do
-#      unless request.path.include? 'login'
-#        unless session[:current_user]
-#          redirect_to '/login'
-#        end
-#      end
-#    end
+    
+    # redirect to login page if not logged in
+    after do
+      unless request.path.include? 'login'
+        unless session[:current_user]
+          redirect_to '/login'
+        end
+      end
+    end
     
     get :index do
       if session[:current_user]
@@ -86,9 +88,6 @@ module PromoplatformPadrino
       end
     end
 
-    get '/auth/confirmed' do
-      render "confirmed", :layout => :application
-    end
     
     get :login do
       render 'login', :layout => :welcome
