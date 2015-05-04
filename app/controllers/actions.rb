@@ -1,8 +1,7 @@
 PromoplatformPadrino::App.controllers :actions do
   
   get :index do
-    @actions = Action.all
-        
+    @actions = Action.where(confirmed: true).group(:account_id).sum(:points)   
     render 'actions/index'
   end
   

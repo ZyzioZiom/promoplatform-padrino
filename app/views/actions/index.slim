@@ -1,1 +1,13 @@
-#actions= partial 'actions/action', :collection => @actions
+h1= "Ranking"
+
+-ranking = @actions.sort_by { |k,v| v }.reverse
+
+-first = ranking.pop
+-first_user = Account.find(first[0])
+
+h2= "1.#{first_user.name} #{first_user.surname}"
+p= "tutaj dać image konta z doklejoną koroną"
+
+-ranking.each_with_index do |account, index|
+  -user = Account.find(account[0])
+  p= "#{index+2}. #{user.name} #{user.surname}, #{account[1]} punktów"

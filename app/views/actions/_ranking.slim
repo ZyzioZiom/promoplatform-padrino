@@ -1,0 +1,7 @@
+h1= "Ranking"
+
+-ranking = @actions.sort_by { |k,v| v }.reverse
+
+-ranking.each_with_index do |account, index|
+  -user = Account.find(account[0])
+  p= "#{index+1}. #{user.name} #{user.surname}, #{account[1]} punktów"
