@@ -1,1 +1,11 @@
 h1= "#{@user.name} #{@user.surname}"
+
+h2 Aktywności:
+
+-@actions.each do |action|
+  -activity = Activity.where(id: action.activity_id).first
+  p=
+  = link_to activity.name, url_for(:activities, :index, :id => activity)
+  ' 
+  -if action.confirmed
+    = "#{action.points} punktów"

@@ -2,3 +2,19 @@ h1= "Witaj #{session[:current_user]['name']}"
 
 p= "Home controller" 
 p= $test_variable
+
+
+hr
+h1 Czat
+div style = "overflow-y: scroll; max-height:200px;"
+
+  -@messages.each do |message|
+    -user = Account.find(message.who)
+    p=
+    = "#{message.created_at.strftime('%H:%M')} "
+    = link_to "#{user.name} #{user.surname}", url_for(:accounts, :index, :id => user.id)  
+    = " #{message.content}" 
+
+hr
+
+= partial 'home/new_message'

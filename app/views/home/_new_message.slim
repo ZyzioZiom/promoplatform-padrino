@@ -1,0 +1,3 @@
+= form_for :message, url(:messages, :create), :class => 'form-horizontal' do |f|
+      = f.text_field :content, :required => true
+      = f.submit "Wyślij wiadomość"

@@ -1,6 +1,7 @@
-img src = session[:current_user].image style = "border-radius: 50%; width: 50px; max-width: 100%;"
-
-p= session[:current_user].email
+div style = "text-align: center;"
+  img src = session[:current_user].image style = "border-radius: 50%; width: 50px; max-width: 100%;"
+  p= link_to "#{session[:current_user].name} #{session[:current_user].surname}", url_for(:accounts, :index, :id => session[:current_user])
+  p= session[:current_user].email
 
 hr
 

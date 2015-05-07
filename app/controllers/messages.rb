@@ -1,15 +1,12 @@
-PromoplatformPadrino::App.controllers :home do
-  
-  get :index do
+PromoplatformPadrino::App.controllers :messages do
+  post :create do
+    message = Message.new
+    message.who = session[:current_user].id
+    message.content = params[:message][:content]
     
-    # get messages for shoutbox
-    @messages = Message.order(created_at: :desc).first(20)
-    
-    render 'home/index'
-  end
-  
-  get :create do
-  
+    if message.save!
+      redirect back
+    end
   end
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'
