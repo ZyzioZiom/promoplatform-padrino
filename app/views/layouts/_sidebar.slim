@@ -1,5 +1,31 @@
-img src = session[:current_user].image style = "border-radius: 50%; width: 100px;"
+img src = session[:current_user].image style = "border-radius: 50%; width: 50px; max-width: 100%;"
 
 p= session[:current_user].email
+
+hr
+
+-# show current level of an user
+-actions = Action.where(confirmed: true, account_id: session[:current_user].id).sum(:points) 
+
+-levels = Level.order(:points)
+
+-current_level = nil
+
+-levels.each do |level|
+  -if actions > level.points
+    -current_level = level
+
+
+
+img style = "width: 100%;" src = current_level.image
+
+p= current_level.name
+
+-if current_level.description
+  p= current_level.description
+  
+p= "#{actions} punktów"
+
+hr
 
 p= link_to "Wyloguj", '/logout'

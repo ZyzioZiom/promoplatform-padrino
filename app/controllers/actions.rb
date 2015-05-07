@@ -1,7 +1,11 @@
 PromoplatformPadrino::App.controllers :actions do
   
   get :index do
-    @actions = Action.where(confirmed: true).group(:account_id).sum(:points)   
+    @actions = Action.where(confirmed: true).group(:account_id).sum(:points) 
+    
+    @ranking = @actions.sort_by { |k,v| v }.reverse
+    
+    
     render 'actions/index'
   end
   

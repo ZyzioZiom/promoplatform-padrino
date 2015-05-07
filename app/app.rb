@@ -93,15 +93,15 @@ module PromoplatformPadrino
       render 'login', :layout => :welcome
     end
     
-    get :accounts do
-      accounts = JSON.parse(Account.all.to_json)
-      
-      JSON.pretty_generate(accounts)
-    end
-    
-    get :home do
-      render 'home', :layout => :application
-    end
+#    get :accounts do
+#      accounts = JSON.parse(Account.all.to_json)
+#      
+#      JSON.pretty_generate(accounts)
+#    end
+#    
+#    get :home do
+#      render 'home', :layout => :application
+#    end
     
   end
 end
