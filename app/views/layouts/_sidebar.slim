@@ -4,6 +4,7 @@ p= session[:current_user].email
 
 hr
 
+
 -# show current level of an user
 -actions = Action.where(confirmed: true, account_id: session[:current_user].id).sum(:points) 
 
@@ -27,5 +28,6 @@ p= current_level.name
 p= "#{actions} punktów"
 
 hr
+
 
 p= link_to "Wyloguj", '/logout'
