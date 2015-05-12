@@ -31,7 +31,7 @@ PromoplatformPadrino::App.controllers :auth do
     email = omniauth['info']['email']
     image = omniauth['info']['image']
 
-    @user = Account.where(uid: uid, email: email).first
+    @user = User.where(uid: uid, email: email).first
     
     
     if @user.nil?
@@ -41,9 +41,9 @@ PromoplatformPadrino::App.controllers :auth do
       password = ::BCrypt::Password.create(email)
       password = password.force_encoding(Encoding::UTF_8) if password.encoding == Encoding::ASCII_8BIT
       
-      new_user = Account.create(uid: uid, email: email, name: first_name, surname: last_name, image: image, role: "user", crypted_password: password)
+      new_user = User.create(uid: uid, email: email, firstname: first_name, lastname: last_name, image: image, role: "user", crypted_password: password)
       
-      @user = Account.where(id: new_user.id).first
+      @user = User.where(id: new_user.id).first
       session[:current_user] = @user
       
       # TODO: send welcome email

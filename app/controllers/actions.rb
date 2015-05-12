@@ -1,7 +1,7 @@
 PromoplatformPadrino::App.controllers :actions do
   
   get :index do
-    @actions = Action.where(confirmed: true).group(:account_id).sum(:points) 
+    @actions = Action.where(confirmed: true).group(:user_id).sum(:points) 
     
     @ranking = @actions.sort_by { |k,v| v }.reverse
     
@@ -13,15 +13,23 @@ PromoplatformPadrino::App.controllers :actions do
     activity_id = params[:action][:activity_id].to_i
     activity = Activity.find(activity_id)
     
-    @action = Action.new
+    action = Action.new
     
-    @action.account_id = session[:current_user].id
-    @action.activity_id = activity_id
-    @action.confirmed = false
-    @action.points = activity.points
+    action.user_id = session[:current_user].id
+    action.activity_id = activity_id
+    action.confirmed = false
+    action.points = activity.points
     
-    if @action.save
+    if action.save
       flash[:notice] = 'Zapisano na aktywność'
+      
+      message = Message.new
+      message.who = session[:current_user].id
+      message.content = "zapisał(a) się na "
+      message.what = activity.id
+      
+      message.save
+      
       redirect back
     end
   end
@@ -29,12 +37,21 @@ PromoplatformPadrino::App.controllers :actions do
   post :update do
     activity_id = params[:action][:activity_id].to_i
     
-    @action = Action.where(activity_id: activity_id, account_id: session[:current_user].id).first
+    @action = Action.where(activity_id: activity_id, user_id: session[:current_user].id).first
     
     @action.confirmed = true
     @action.confirmation = params[:action][:confirmation]
     
     if @action.save
+      
+#      potwierdzenia aktywności śmiecą czat
+#      message = Message.new
+#      message.who = session[:current_user].id
+#      message.content = "potwierdził(a) swoją aktywność w "
+#      message.what = activity_id
+#      
+#      message.save
+      
       redirect back
     end
   end

@@ -1,25 +1,25 @@
 div style = "text-align: center;"
   img src = session[:current_user].image style = "border-radius: 50%; width: 50px; max-width: 100%;"
-  p= link_to "#{session[:current_user].name} #{session[:current_user].surname}", url_for(:accounts, :index, :id => session[:current_user])
+  p= link_to "#{session[:current_user].firstname} #{session[:current_user].lastname}", url_for(:users, :index, :id => session[:current_user])
   p= session[:current_user].email
 
 hr
 
 
 -# show current level of an user
--actions = Action.where(confirmed: true, account_id: session[:current_user].id).sum(:points) 
+-actions = Action.where(confirmed: true, user_id: session[:current_user].id).sum(:points) 
 
 -levels = Level.order(:points)
 
 -current_level = nil
 
 -levels.each do |level|
-  -if actions > level.points
+  -if actions >= level.points
     -current_level = level
 
 
 
-img style = "width: 100%;" src = current_level.image
+img style = "width: 100%; border-radius: 50%;" src = current_level.image
 
 p= current_level.name
 

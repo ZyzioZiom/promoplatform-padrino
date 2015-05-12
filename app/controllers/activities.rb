@@ -16,25 +16,25 @@ PromoplatformPadrino::App.controllers :activities do
         end
       
       when 'posters'
-        @activities = Activity.where(category: "poster")
+        @activities = Activity.where(category: "poster").order(:date, :hour).group_by(&:date)
         unless @activities.nil?
           render 'activities/index'
         end
       
       when 'stands'
-        @activities = Activity.where(category: "stand")
+        @activities = Activity.where(category: "stand").order(:date, :hour).group_by(&:date)
         unless @activities.nil?
           render 'activities/index'
         end
       
       when 'events'
-        @activities = Activity.where(category: "event")
+        @activities = Activity.where(category: "event").order(:date, :hour).group_by(&:date)
         unless @activities.nil?
           render 'activities/index'
         end
       
       when 'others'
-        @activities = Activity.where(category: "other")
+        @activities = Activity.where(category: "other").order(:date, :hour).group_by(&:date)
         unless @activities.nil?
           render 'activities/index'
         end

@@ -1,6 +1,6 @@
 ul class="nav nav-tabs"
-  li class="active" = link_to tag_icon(:list, pat(:list)), url(:actions, :index)
-  li = link_to tag_icon(:plus, pat(:new)), url(:actions, :new)
+  li class="active" = link_to tag_icon(:list, pat(:list)), url(:levels, :index)
+  li = link_to tag_icon(:plus, pat(:new)), url(:levels, :new)
 
 div class="tabs-content"
   table class="table table-striped table-hover table-condensed" id="list"
@@ -21,40 +21,38 @@ div class="tabs-content"
                   div class='arrow'
                   h3 class='popover-title' = pat(:delete_selected_title)
                   div class='popover-content'
-                    = form_tag url(:actions, :destroy_many), :method => :delete do
-                      = hidden_field_tag :action_ids, :'data-delete-many-ids' => true
+                    = form_tag url(:levels, :destroy_many), :method => :delete do
+                      = hidden_field_tag :level_ids, :'data-delete-many-ids' => true
                       = submit_tag  pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       div class='btn btn-default btn-small cancel' = pat(:cancel)
-        th class='header' = mat(:action, :id)
-        th class='header' = mat(:action, :user_id)
-        th class='header' = mat(:action, :activity_id)
-        th class='header' = mat(:action, :confirmed)
-        th class='header' = mat(:action, :confirmation)
-        th class='header' = mat(:action, :points)
-        th class='header' = mat(:action, :created_at)
-        th class='header' = mat(:action, :updated_at)
+        th class='header' = mat(:level, :id)
+        th class='header' = mat(:level, :name)
+        th class='header' = mat(:level, :description)
+        th class='header' = mat(:level, :points)
+        th class='header' = mat(:level, :image)
+        th class='header' = mat(:level, :created_at)
+        th class='header' = mat(:level, :updated_at)
         th class='header list-row-action-header'
 
     tbody
-      -@actions.each do |action|
+      -@levels.each do |level|
         tr class='list-row'
-          td class='list-column list-selectable' = check_box_tag 'action_ids[]', :value => action.id, :class => 'list-selectable-checkbox'
-          td class='list-column' = action.id
-          td class='list-column' = action.user_id
-          td class='list-column' = action.activity_id
-          td class='list-column' = action.confirmed ? tag_icon(:ok) : tag_icon(:remove)
-          td class='list-column' = action.confirmation
-          td class='list-column' = action.points
-          td class='list-column' = time_ago_in_words action.created_at
-          td class='list-column' = time_ago_in_words action.updated_at
+          td class='list-column list-selectable' = check_box_tag 'level_ids[]', :value => level.id, :class => 'list-selectable-checkbox'
+          td class='list-column' = level.id
+          td class='list-column' = level.name
+          td class='list-column' = level.description
+          td class='list-column' = level.points
+          td class='list-column' = level.image
+          td class='list-column' = time_ago_in_words level.created_at
+          td class='list-column' = time_ago_in_words level.updated_at
           td class='list-column list-row-action'
             div class='list-row-action-wrapper'
-              = link_to tag_icon(:edit), :href => url(:actions, :edit, :id => action.id), :rel => :tooltip, :title => "#{pat(:edit)} action", :class => 'list-row-action-wrapper-link'
-              = link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{pat(:delete)} action", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              = link_to tag_icon(:edit), :href => url(:levels, :edit, :id => level.id), :rel => :tooltip, :title => "#{pat(:edit)} level", :class => 'list-row-action-wrapper-link'
+              = link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{pat(:delete)} level", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
               div class='popover list-row-action-popover-delete-one left'
                 div class='arrow'
-                h3 class='popover-title' = pat(:delete, :model => "action")
+                h3 class='popover-title' = pat(:delete, :model => "level")
                 div class='popover-content'
-                  = form_tag url(:actions, :destroy, :id => action.id), :method => :delete do
+                  = form_tag url(:levels, :destroy, :id => level.id), :method => :delete do
                     = submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
                     div class='btn btn-default btn-small cancel' = pat(:cancel)

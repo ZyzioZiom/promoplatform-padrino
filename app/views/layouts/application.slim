@@ -21,7 +21,8 @@ html style = "width:100%; height:100%; padding:0; margin:0;"
           div= link_to "Inne", url_for(:activities, :index, :id => 'others')
           div= link_to "Eventy", url_for(:activities, :index, :id => 'events')
           div= link_to "Ranking", url_for(:actions, :index)
-          div= link_to "Użytkownicy", url_for(:accounts, :index)
+          div= link_to "Użytkownicy", url_for(:users, :index)
+          div= link_to "Admin", url('/admin')
 
       div style = "padding: 20px;"
         = yield

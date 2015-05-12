@@ -2,7 +2,8 @@ activity
 -# sort activities by day
 -@activities.each do |date, activities|
   -# now we have array of activities in one day
-  p= l(date, :format => '%A, %d %b %Y')
+  strong
+    p= l(date, :format => '%A, %d %b %Y')
 
   table
     tr
@@ -19,13 +20,12 @@ activity
           -# display people signed up for this activity
           -signed_up = Action.where(activity_id: activity.id)
           -signed_up.each do |signed|
-            -user = Account.where(id: signed.account_id).first
+            -user = User.where(id: signed.user_id).first
             
             -if (signed.confirmed?)
               a href="#{signed.confirmation}" target="_blank" 
               img style="margin: 0px; width: 15px; border-radius:50%; border: 1px solid lime; box-shadow: 0px 0px 40px lime" src="#{user.image}" title="#{user.name} #{user.surname}"
             -else
               img style="margin: 0px; width: 15px; border-radius:50%; border: 1px solid yellow; box-shadow: 0px 0px 40px yellow" src="#{user.image}" title="#{user.name} #{user.surname}"
-          end
           
 hr

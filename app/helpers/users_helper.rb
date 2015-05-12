@@ -2,12 +2,12 @@
 
 module PromoplatformPadrino
   class App
-    module AccountsHelper
+    module UsersHelper
       # def simple_helper_method
       # ...
       # end
     end
 
-    helpers AccountsHelper
+    helpers UsersHelper
   end
 end

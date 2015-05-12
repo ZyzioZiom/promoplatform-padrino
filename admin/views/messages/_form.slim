@@ -1,0 +1,25 @@
+- error = @message.errors.include?(:who)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :who, :class => 'control-label'
+  div class='controls'
+    = f.text_field :who, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    span class='help-inline' = error ? f.error_message_on(:who, :class => 'text-error') : pat(:example)
+- error = @message.errors.include?(:content)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :content, :class => 'control-label'
+  div class='controls'
+    = f.text_field :content, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:content, :class => 'text-error') : pat(:example)
+- error = @message.errors.include?(:what)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :what, :class => 'control-label'
+  div class='controls'
+    = f.text_field :what, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:what, :class => 'text-error') : pat(:example)
+
+div class="form-actions"
+  = f.submit pat(:save), :class => 'btn btn-primary'
+  |&nbsp;
+  = f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  |&nbsp;
+  = link_to pat(:cancel), url(:messages, :index), :class => 'btn btn-default'

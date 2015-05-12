@@ -1,5 +1,5 @@
 h1= "Ranking"
 
--@ranking.each_with_index do |account, index|
-  -user = Account.find(account.first)
-  p= "#{index+1}. #{user.name} #{user.surname}, #{account.second} punktów"
+-@ranking.each_with_index do |user, index|
+  -user = User.find(user.first)
+  p= "#{index+1}. #{user.name} #{user.surname}, #{user.second} punktów"

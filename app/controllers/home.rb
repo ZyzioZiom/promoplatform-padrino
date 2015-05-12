@@ -3,7 +3,7 @@ PromoplatformPadrino::App.controllers :home do
   get :index do
     
     # get messages for shoutbox
-    @messages = Message.order(created_at: :desc).first(20)
+    @messages = Message.order(created_at: :desc).first(50)
     
     render 'home/index'
   end

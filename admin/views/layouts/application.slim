@@ -19,7 +19,7 @@ html lang='en'
           = link_to 'Promo Admin', url(:base, :index), :class => 'navbar-brand', :title => 'Padrino Admin'
 
           ul class='nav navbar-nav pull-right'
-            li class='navbar-edit-account' = link_to tag_icon(:user), url(:accounts, :edit, :id => current_account.id), :title => pat(:profile), :class => 'navbar-nav-link'
+            li class='navbar-edit-account' = link_to tag_icon(:user), url(:users, :edit, :id => current_account.id), :title => pat(:profile), :class => 'navbar-nav-link'
             li class='navbar-logout' = button_to(pat(:logout), url(:sessions, :destroy), :method => :delete, :class => 'navbar-nav-form') do
               = content_tag :button, tag_icon(:'power-off'), :type => :submit, :title => pat(:logout), :class => 'navbar-nav-form-link'
 

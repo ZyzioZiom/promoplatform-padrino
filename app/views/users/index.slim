@@ -1,0 +1,10 @@
+
+table
+  -@users.each do |user|
+    tr
+      td
+        img style = "width: 100px; border-radius: 50%;" src = user.image
+      td
+        p= link_to "#{user.firstname} #{user.lastname}", url_for(:users, :index, :id => user)
+        
+  

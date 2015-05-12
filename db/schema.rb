@@ -11,22 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 9) do
-
-  create_table "accounts", force: :cascade do |t|
-    t.string   "name"
-    t.string   "surname"
-    t.string   "email"
-    t.string   "crypted_password"
-    t.string   "role"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "uid"
-    t.string   "image"
-  end
+ActiveRecord::Schema.define(version: 12) do
 
   create_table "actions", force: :cascade do |t|
-    t.integer  "account_id"
+    t.integer  "user_id"
     t.integer  "activity_id"
     t.boolean  "confirmed"
     t.string   "confirmation"
@@ -75,8 +63,15 @@ ActiveRecord::Schema.define(version: 9) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "uid"
+    t.string   "image"
   end
 
 end

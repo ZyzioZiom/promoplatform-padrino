@@ -21,7 +21,7 @@ module PromoplatformPadrino
     # layout  :my_layout              # Layout can be in views/layouts/foo.ext or views/foo.ext (default :application)
     #
 
-    set :admin_model, 'Account'
+    set :admin_model, 'User'
     set :login_page,  '/sessions/new'
 
     enable  :sessions
@@ -33,9 +33,11 @@ module PromoplatformPadrino
     end
 
     access_control.roles_for :admin do |role|
+      role.project_module :users, '/users'
+      role.project_module :levels, '/levels'
+      role.project_module :messages, '/messages'
       role.project_module :actions, '/actions'
       role.project_module :activities, '/activities'
-      role.project_module :accounts, '/accounts'
     end
 
     # Custom error management 

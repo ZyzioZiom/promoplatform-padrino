@@ -1,4 +1,10 @@
-h1= "#{@user.name} #{@user.surname}"
+table
+  tr
+    td
+      img style = "width: 200px; border-radius: 50%;" src = @user.image
+    td
+      h1= "#{@user.name} #{@user.surname}"
+      p= @user.email
 
 h2 Aktywności:
 
