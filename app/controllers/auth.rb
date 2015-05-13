@@ -2,24 +2,6 @@ PromoplatformPadrino::App.controllers :auth do
   
   layout :application
   
-  # get :index, :map => '/foo/bar' do
-  #   session[:foo] = 'bar'
-  #   render 'index'
-  # end
-
-  # get :sample, :map => '/sample/url', :provides => [:any, :js] do
-  #   case content_type
-  #     when :js then ...
-  #     else ...
-  # end
-
-  # get :foo, :with => :id do
-  #   'Maps to url '/foo/#{params[:id]}''
-  # end
-
-  # get '/example' do
-  #   'Hello world!'
-  # end
   
   get :google_oauth2_callback, :map => "/auth/google_oauth2/callback" do
     
@@ -43,19 +25,18 @@ PromoplatformPadrino::App.controllers :auth do
       
       new_user = User.create(uid: uid, email: email, firstname: first_name, lastname: last_name, image: image, role: "user", crypted_password: password)
       
-      @user = User.where(id: new_user.id).first
-      session[:current_user] = @user
+      current_user = User.find(new_user)
       
       # TODO: send welcome email
       
-      flash[:success] = "Witaj na Promo Platformie, #{@user.firstname}"
+      flash[:success] = "Witaj na Promo Platformie, #{current_user.firstname}"
       
       redirect_to 'home'
     else
       
-      session[:current_user] = @user
+      current_user = @user
       
-      flash[:success] = "Witaj ponownie, #{@user.firstname}"
+      flash[:success] = "Witaj ponownie, #{current_user.firstname}"
       
       redirect_to 'home'
     end

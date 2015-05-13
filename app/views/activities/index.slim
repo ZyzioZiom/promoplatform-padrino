@@ -18,11 +18,11 @@ activity
           .place= activity.place
           
           -# display people signed up for this activity
-          -signed_up = Action.where(activity_id: activity.id)
+          -signed_up = Action.signed(activity)
           -signed_up.each do |signed|
-            -user = User.where(id: signed.user_id).first
+            -user = User.find(signed.user_id)
             
-            -if (signed.confirmed?)
+            -if signed.confirmed?
               a href="#{signed.confirmation}" target="_blank" 
               img style="margin: 0px; width: 15px; border-radius:50%; border: 1px solid lime; box-shadow: 0px 0px 40px lime" src="#{user.image}" title = User.fullname(signed.user_id)
             -else

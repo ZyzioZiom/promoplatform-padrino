@@ -1,7 +1,7 @@
 PromoplatformPadrino::App.controllers :actions do
   
   get :index do
-    @actions = Action.where(confirmed: true).group(:user_id).sum(:points) 
+    @actions = Action.sum_confirmed
     
     @ranking = @actions.sort_by { |k,v| v }.reverse
     
@@ -37,7 +37,7 @@ PromoplatformPadrino::App.controllers :actions do
   post :update do
     activity_id = params[:action][:activity_id].to_i
     
-    @action = Action.where(activity_id: activity_id, user_id: session[:current_user].id).first
+    @action = Action.current(activity_id, current_user)
     
     @action.confirmed = true
     @action.confirmation = params[:action][:confirmation]

@@ -7,10 +7,13 @@ PromoplatformPadrino::App.controllers :activities do
   end
 
   get :index, :with => :id do
+    
     if params[:id].to_i.to_s == params[:id] # if id is integer
+      
       @activity = Activity.find(params[:id])
       @signed = Action.where(activity_id: params[:id])
-      @current_user_signed = Action.where(activity_id: params[:id], user_id: session[:current_user]).first
+      
+      @current_user_signed = Action.current(params[:id], current_user)
 
       unless @activity.nil?
         render 'activities/show'
@@ -18,7 +21,7 @@ PromoplatformPadrino::App.controllers :activities do
       
     else
       
-      @activities = Activity.where(category: params[:id]).order(:date, :hour).group_by(&:date)
+      @activities = Activity.category(params[:id])
       
       unless @activities.nil?
         render 'activities/index'

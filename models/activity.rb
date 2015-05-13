@@ -1,6 +1,12 @@
 class Activity < ActiveRecord::Base
 
-    def self.signed(activity_id)
-      Action.where(activity_id: activity_id)
+    
+  
+    def self.category(category)
+      Activity.where(category: category).order(:date, :hour).group_by(&:date)
+    end
+  
+    def self.current(activity_id, user_id)
+      
     end
 end
