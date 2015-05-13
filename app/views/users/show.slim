@@ -3,13 +3,13 @@ table
     td
       img style = "width: 200px; border-radius: 50%;" src = @user.image
     td
-      h1= "#{User.fullname(@user.id)}"
+      h1= "#{User.fullname(@user)}"
       p= @user.email
 
 h2 Aktywności:
 
 -@actions.each do |action|
-  -activity = Activity.where(id: action.activity_id).first
+  -activity = Activity.find(action.activity_id)
   p=
   = link_to activity.name, url_for(:activities, :index, :id => activity)
   ' 

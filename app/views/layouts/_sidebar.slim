@@ -29,11 +29,17 @@ p= current_level.name
   
 p= "#{actions} punktów"
 
+-if next_level.nil?
+  -percent = 100
+-else
+  -percent = (actions.to_f - current_level.points) / next_level.points * 100
+  -percent = percent.floor
 
--percent = (actions.to_f - current_level.points) / next_level.points * 100
--percent = percent.floor
 
-p= "#{percent}% to next level"
+.progress
+  .progress-bar.progress-bar-success role="progressbar" aria-valuenow="#{percent}" aria-valuemin="0" aria-valuemax="100" style="width: #{percent}%;"
+    span class="sr-only" = "#{percent}%"
+    
 hr
 
 
