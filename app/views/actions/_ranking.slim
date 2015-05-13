@@ -3,5 +3,5 @@ h1= "Ranking"
 -ranking = @actions.sort_by { |k,v| v }.reverse
 
 -ranking.each_with_index do |user, index|
-  -user = User.find(user[0])
-  p= "#{index+1}. #{user.name} #{user.surname}, #{user[1]} punktów"
+  -user = User.find(user.first)
+  p= "#{index+1}. #{User.fullname(user.id)}, #{user.second} punktów"

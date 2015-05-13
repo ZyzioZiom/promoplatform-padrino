@@ -1,7 +1,7 @@
 PromoplatformPadrino::Admin.controllers :users do
   get :index do
     @title = "Users"
-    @users = User.all
+    @users = User.order(updated_at: :desc)
     render 'users/index'
   end
 

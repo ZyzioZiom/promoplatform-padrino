@@ -1,5 +1,12 @@
 h1= "Ranking"
 
--@ranking.each_with_index do |user, index|
-  -user = User.find(user.first)
-  p= "#{index+1}. #{user.name} #{user.surname}, #{user.second} punktów"
+table
+  -@ranking.each_with_index do |data, index|
+    -user = User.find(data.first)
+    
+    tr
+      td
+        =link_to image_tag("#{user.image}", { :width => "50px", :'border-radius' => "50%"} ), url_for(:users, :index, :id => user)
+        -# img src = "#{user.image}" style = "width: 50px; border-radius: 50%;"
+      td
+        p= "#{index+1}. #{User.fullname(data.first)}, #{data.second} punktów"

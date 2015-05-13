@@ -5,11 +5,11 @@ PromoplatformPadrino::Admin.controllers :sessions do
 
   post :create do
     if user = User.authenticate(params[:email], params[:password])
-      set_current_user(user)
+      set_current_account(user)
       redirect url(:base, :index)
     elsif Padrino.env == :development && params[:bypass]
       user = User.first
-      set_current_user(user)
+      set_current_account(user)
       redirect url(:base, :index)
     else
       params[:email] = h(params[:email])
@@ -19,7 +19,7 @@ PromoplatformPadrino::Admin.controllers :sessions do
   end
 
   delete :destroy do
-    set_current_user(nil)
+    set_current_account(nil)
     redirect url(:sessions, :new)
   end
 end

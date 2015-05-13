@@ -1,7 +1,7 @@
 PromoplatformPadrino::Admin.controllers :levels do
   get :index do
     @title = "Levels"
-    @levels = Level.all
+    @levels = Level.order(:points)
     render 'levels/index'
   end
 

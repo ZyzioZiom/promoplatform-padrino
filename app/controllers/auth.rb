@@ -48,10 +48,14 @@ PromoplatformPadrino::App.controllers :auth do
       
       # TODO: send welcome email
       
+      flash[:success] = "Witaj na Promo Platformie, #{@user.firstname}"
+      
       redirect_to 'home'
     else
       
       session[:current_user] = @user
+      
+      flash[:success] = "Witaj ponownie, #{@user.firstname}"
       
       redirect_to 'home'
     end

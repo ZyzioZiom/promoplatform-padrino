@@ -14,6 +14,11 @@ module PromoplatformPadrino
       }
     end
     
+    
+  def current_user
+    @_current_user ||= session[:current_user].id &&
+      User.find_by(id: session[:current_user].id)
+  end
     ##
     # Caching support.
     #

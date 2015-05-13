@@ -1,7 +1,7 @@
 PromoplatformPadrino::Admin.controllers :activities do
   get :index do
     @title = "Activities"
-    @activities = Activity.all
+    @activities = Activity.order(updated_at: :desc)
     render 'activities/index'
   end
 

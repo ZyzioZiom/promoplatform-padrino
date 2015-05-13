@@ -1,7 +1,7 @@
 PromoplatformPadrino::Admin.controllers :messages do
   get :index do
     @title = "Messages"
-    @messages = Message.all
+    @messages = Message.order(updated_at: :desc)
     render 'messages/index'
   end
 

@@ -3,7 +3,7 @@ table
     td
       img style = "width: 200px; border-radius: 50%;" src = @user.image
     td
-      h1= "#{@user.name} #{@user.surname}"
+      h1= "#{User.fullname(@user.id)}"
       p= @user.email
 
 h2 Aktywności:

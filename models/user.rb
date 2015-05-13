@@ -38,4 +38,16 @@ class User < ActiveRecord::Base
   def password_required
     crypted_password.blank? || password.present?
   end
+  
+  def self.fullname(id)
+    user = User.find(id)
+    
+    if user.firstname == nil || user.lastname == nil
+      user.email
+    else
+      "#{user.firstname} #{user.lastname}"
+    end
+  end
+  
+    
 end

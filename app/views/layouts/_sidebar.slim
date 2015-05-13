@@ -12,11 +12,12 @@ hr
 -levels = Level.order(:points)
 
 -current_level = nil
+-next_level = nil
 
--levels.each do |level|
+-levels.each_with_index do |level,index|
   -if actions >= level.points
     -current_level = level
-
+    -next_level = levels[index + 1]
 
 
 img style = "width: 100%; border-radius: 50%;" src = current_level.image
@@ -28,6 +29,11 @@ p= current_level.name
   
 p= "#{actions} punktów"
 
+
+-percent = (actions.to_f - current_level.points) / next_level.points * 100
+-percent = percent.floor
+
+p= "#{percent}% to next level"
 hr
 
 
