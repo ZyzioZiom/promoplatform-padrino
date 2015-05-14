@@ -1,35 +1,35 @@
 ##
 # You can use other adapters like:
 #
-   ActiveRecord::Base.configurations[:production] = {
-     :adapter   => 'postgresql',
-     :encoding  => 'utf8',
-     :reconnect => true,
-     :database  => 'd8eqpc0k42ing0',
-     :pool      => 5,
-     :username  => 'qvyefggvxvrvdv',
-     :password  => 'pUJlI2dju2N0WBuA6kj1Vd0Nwz',
-     :host      => 'ec2-54-197-241-67.compute-1.amazonaws.com',
-     :port      => 5432
-   }
+#   ActiveRecord::Base.configurations[:production] = {
+#     :adapter   => 'postgresql',
+#     :encoding  => 'utf8',
+#     :reconnect => true,
+#     :database  => 'd8eqpc0k42ing0',
+#     :pool      => 5,
+#     :username  => 'qvyefggvxvrvdv',
+#     :password  => 'pUJlI2dju2N0WBuA6kj1Vd0Nwz',
+#     :host      => 'ec2-54-197-241-67.compute-1.amazonaws.com',
+#     :port      => 5432
+#   }
 #
-#ActiveRecord::Base.configurations[:development] = {
-#  :adapter => 'sqlite3',
-#  :database => Padrino.root('db', 'promoplatform_padrino_development.db')
-#
-#}
-#
-#ActiveRecord::Base.configurations[:production] = {
-#  :adapter => 'sqlite3',
-#  :database => Padrino.root('db', 'promoplatform_padrino_production.db')
-#
-#}
-#
-#ActiveRecord::Base.configurations[:test] = {
-#  :adapter => 'sqlite3',
-#  :database => Padrino.root('db', 'promoplatform_padrino_test.db')
-#
-#}
+ActiveRecord::Base.configurations[:development] = {
+  :adapter => 'sqlite3',
+  :database => Padrino.root('db', 'promoplatform_padrino_development.db')
+
+}
+
+ActiveRecord::Base.configurations[:production] = {
+  :adapter => 'sqlite3',
+  :database => Padrino.root('db', 'promoplatform_padrino_production.db')
+
+}
+
+ActiveRecord::Base.configurations[:test] = {
+  :adapter => 'sqlite3',
+  :database => Padrino.root('db', 'promoplatform_padrino_test.db')
+
+}
 
 # Setup our logger
 ActiveRecord::Base.logger = logger
