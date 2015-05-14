@@ -5,24 +5,22 @@ html style = "width:100%; height:100%; padding:0; margin:0;"
   head
     title Promoplatforma
     = stylesheet_link_tag 'bootstrap'
+    = stylesheet_link_tag $theme
 
-  body style = "width:100%; height:100%; padding:0; margin:0; font-family:Ubuntu; background: url(http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-133966.jpg) no-repeat top center; background-size: cover; background-attachment: fixed;"
-    div style = "position: fixed; width:20%; height:100%; padding: 20px; box-sizing: border-box; ms-box-sizing: border-box; webkit-box-sizing: border-box; moz-box-sizing: border-box; float:left; background: rgba(150, 150, 150, 0.1);"
+  body class="body-main"
+    .sidebar
       = partial 'layouts/sidebar'
-      
-    div style = "width:80%; height: 100%; float:right;"
-      div style = "padding:10px; background: rgba(230,230,230,0.6);"
-
-
-          div style="display: inline; padding: 0px 10px 0px 5px;" = link_to "Strona główna", :/
-          div style="display: inline; padding: 5px;" = link_to "Ulotki", url_for(:activities, :index, :id => 'leaflets')
-          div style="display: inline; padding: 5px;" = link_to "Plakaty", url_for(:activities, :index, :id => 'posters')
-          div style="display: inline; padding: 5px;" = link_to "Standy", url_for(:activities, :index, :id => 'stands')
-          div style="display: inline; padding: 5px;" = link_to "Inne", url_for(:activities, :index, :id => 'others')
-          div style="display: inline; padding: 5px;" = link_to "Eventy", url_for(:activities, :index, :id => 'events')
-          div style="display: inline; padding: 5px;" = link_to "Ranking", url_for(:actions, :index)
-          div style="display: inline; padding: 5px;" = link_to "Użytkownicy", url_for(:users, :index)
-          div style="display: inline; padding: 5px;" = link_to "Admin", url('/admin')
+    .content  
+      .top-bar
+        .menu-item = link_to "Strona główna", :/
+        .menu-item = link_to "Ulotki", url_for(:activities, :index, :id => 'leaflets')
+        .menu-item = link_to "Plakaty", url_for(:activities, :index, :id => 'posters')
+        .menu-item = link_to "Standy", url_for(:activities, :index, :id => 'stands')
+        .menu-item = link_to "Inne", url_for(:activities, :index, :id => 'others')
+        .menu-item = link_to "Eventy", url_for(:activities, :index, :id => 'events')
+        .menu-item = link_to "Ranking", url_for(:actions, :index)
+        .menu-item = link_to "Użytkownicy", url_for(:users, :index)
+        .menu-item = link_to "Admin", url('/admin')
 
       -# flash tag
       p= {:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info'}.map { |type, class_name| flash_tag(type, :class => "alert alert-#{class_name} fade in", :bootstrap => true) }.join.html_safe

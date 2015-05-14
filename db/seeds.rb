@@ -15,7 +15,7 @@ password  = shell.ask "Tell me the password to use:"
 
 shell.say ""
 
-user = User.create(:email => email, :firstname => "Foo", :lastname => "Bar", :password => password, :password_confirmation => password, :role => "admin")
+user = User.create(:email => email, :firstname => "Pan", :lastname => "Admin", :password => password, :password_confirmation => password, :role => "admin")
 
 if user.valid?
   shell.say "================================================================="

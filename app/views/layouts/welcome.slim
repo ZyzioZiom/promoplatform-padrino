@@ -1,12 +1,14 @@
 doctype html
 
-html style = "width:100%; height:100%; padding:0; margin:0; background: #ddd;"
+html style = "width:100%; height:100%; padding:0; margin:0;"
 
   head
-    title Witaj na Promoplatformie
+    title Promoplatforma
+    = stylesheet_link_tag 'bootstrap'
+    = stylesheet_link_tag $theme
 
 
-  body style = "width:100%; height:100%; padding:0; margin:0; font-family:Ubuntu; background: url(http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-133966.jpg) no-repeat top center; background-size: cover; background-attachment: fixed;"
+  body class="body-welcome" 
     div style = "width:100%%; height:100%; float:left;"
       div style = "padding:20px; text-align:center;"
         

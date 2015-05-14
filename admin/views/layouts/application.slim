@@ -16,8 +16,8 @@ html lang='en'
     div class='navbar navbar-fixed-top'
       div class='navbar-inner'
         div class='container'
-          = link_to 'Promo Admin', url(:base, :index), :class => 'navbar-brand', :title => 'Promo Admin'
-
+          = link_to 'Promo', url('../'), :class => 'navbar-brand', :title => 'Promo Admin'
+          
           ul class='nav navbar-nav pull-right'
             li class='navbar-edit-account' = link_to "Edytuj profil", url(:users, :edit, :id => current_account.id), :title => pat(:profile), :class => 'navbar-nav-link'
             li class='navbar-logout' = button_to(pat(:logout), url(:sessions, :destroy), :method => :delete, :class => 'navbar-nav-form') do
