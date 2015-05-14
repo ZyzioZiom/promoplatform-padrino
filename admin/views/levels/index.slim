@@ -45,7 +45,7 @@ div class="tabs-content"
           td class='list-column' = level.name
           td class='list-column' = level.description
           td class='list-column' = level.points
-          td class='list-column' = level.image
+          td class='list-column' = link_to level.image, level.image
           td class='list-column' = time_ago_in_words level.created_at
           td class='list-column' = time_ago_in_words level.updated_at
           td class='list-column list-row-action'

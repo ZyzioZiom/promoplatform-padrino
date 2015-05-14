@@ -6,7 +6,9 @@ table
     
     tr
       td
-        =link_to image_tag("#{user.image}", { :width => "50px", :'border-radius' => "50%"} ), url_for(:users, :index, :id => user)
-        -# img src = "#{user.image}" style = "width: 50px; border-radius: 50%;"
+        img src = "#{user.image}" style = "width: 50px; border-radius: 50%; padding: 5px;"
       td
-        p= "#{index+1}. #{User.fullname(data.first)}, #{data.second} punktów"
+        div
+          | #{index+1}. 
+          = link_to "#{User.fullname(data.first)}", url_for(:users, :index, :id => user)
+          |  #{data.second} punktów

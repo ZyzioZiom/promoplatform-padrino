@@ -36,6 +36,7 @@ Bundler.require(:default, RACK_ENV)
 #
 Padrino.before_load do
   Time.zone = 'Warsaw'
+  I18n.default_locale = :pl
 end
 
 ##

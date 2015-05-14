@@ -3,12 +3,12 @@ activity
 -@activities.each do |date, activities|
   -# now we have array of activities in one day
   strong
-    p= l(date, :format => '%A, %d %b %Y')
+    p style="padding-top: 30px;" = l(date, :format => '%A, %d %b %Y')
 
   table
     tr
       -activities.each do |activity|
-        td
+        td style="padding: 10px; border: 1px dotted black; vertical-align: top;"
           .title= link_to activity.name, url_for(:activities, :index, :id => activity)
           -if activity.hour
             .hour= activity.hour.strftime("%H:%M")

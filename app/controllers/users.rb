@@ -11,6 +11,8 @@ PromoplatformPadrino::App.controllers :users do
     
     @actions = Action.where(user_id: params[:id])
     
+    @sum_points = Action.sum_points(params[:id])
+      
     render 'users/show'
   end
 end
