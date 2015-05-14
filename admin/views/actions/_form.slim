@@ -14,7 +14,7 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label "Aktywność potwierdzona?", :class => 'control-label'
   div class='controls'
-    = f.check_box :confirmed, :class => 'form-control input-large input-with-feedback'
+    = f.check_box :confirmed
     span class='help-inline' = error ? f.error_message_on(:confirmed, :class => 'text-error') : nil
 - error = @action.errors.include?(:confirmation)
 fieldset class='control-group#{error ? ' has-error' : ''}'

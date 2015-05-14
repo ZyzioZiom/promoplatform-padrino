@@ -1,0 +1,8 @@
+ul class="nav nav-tabs"
+  li = link_to tag_icon(:list, pat(:list)), url(:activities, :index)
+  li = link_to tag_icon(:plus, pat(:new)), url(:activities, :new)
+  li class="active" = link_to tag_icon(:plus, pat("Import CSV")), url(:activities, :import)
+  
+hr
+
+p Może kiedyś...

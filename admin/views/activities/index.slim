@@ -1,6 +1,7 @@
 ul class="nav nav-tabs"
   li class="active" = link_to tag_icon(:list, pat(:list)), url(:activities, :index)
   li = link_to tag_icon(:plus, pat(:new)), url(:activities, :new)
+  li = link_to tag_icon(:plus, pat("Import CSV")), url(:activities, :import)
 
 div class="tabs-content"
   table class="table table-striped table-hover table-condensed" id="list"
@@ -28,7 +29,6 @@ div class="tabs-content"
         th class='header' = mat(:activity, :id)
         th class='header' = mat(:activity, :category)
         th class='header' = mat(:activity, :hour)
-        th class='header' = mat(:activity, :day)
         th class='header' = mat(:activity, :date)
         th class='header' = mat(:activity, :place)
         th class='header' = mat(:activity, :name)
@@ -53,22 +53,21 @@ div class="tabs-content"
           td class='list-column list-selectable' = check_box_tag 'activity_ids[]', :value => activity.id, :class => 'list-selectable-checkbox'
           td class='list-column' = activity.id
           td class='list-column' = activity.category
-          td class='list-column' = activity.hour
-          td class='list-column' = activity.day
+          td class='list-column' = activity.hour ? activity.hour.strftime('%H:%M') : nil
           td class='list-column' = activity.date
           td class='list-column' = activity.place
           td class='list-column' = activity.name
           td class='list-column' = activity.description
           td class='list-column' = activity.points
           td class='list-column' = activity.image
-          td class='list-column' = activity.global_talents ? tag_icon(:ok) : tag_icon(:remove)
-          td class='list-column' = activity.global_citizen ? tag_icon(:ok) : tag_icon(:remove)
-          td class='list-column' = activity.career_days ? tag_icon(:ok) : tag_icon(:remove)
-          td class='list-column' = activity.career_forum ? tag_icon(:ok) : tag_icon(:remove)
-          td class='list-column' = activity.future_leaders ? tag_icon(:ok) : tag_icon(:remove)
-          td class='list-column' = activity.aiesec_university ? tag_icon(:ok) : tag_icon(:remove)
-          td class='list-column' = activity.youth_to_business_forum ? tag_icon(:ok) : tag_icon(:remove)
-          td class='list-column' = activity.global_host ? tag_icon(:ok) : tag_icon(:remove)
+          td class='list-column' = activity.global_talents ? 10006.chr : tag_icon(:remove)
+          td class='list-column' = activity.global_citizen ? 10006.chr : tag_icon(:remove)
+          td class='list-column' = activity.career_days ? 10006.chr : tag_icon(:remove)
+          td class='list-column' = activity.career_forum ? 10006.chr : tag_icon(:remove)
+          td class='list-column' = activity.future_leaders ? 10006.chr : tag_icon(:remove)
+          td class='list-column' = activity.aiesec_university ? 10006.chr : tag_icon(:remove)
+          td class='list-column' = activity.youth_to_business_forum ? 10006.chr : tag_icon(:remove)
+          td class='list-column' = activity.global_host ? 10006.chr : tag_icon(:remove)
           td class='list-column' = time_ago_in_words activity.created_at
           td class='list-column' = time_ago_in_words activity.updated_at
           td class='list-column list-row-action'

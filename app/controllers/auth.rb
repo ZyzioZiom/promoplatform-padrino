@@ -18,7 +18,7 @@ PromoplatformPadrino::App.controllers :auth do
     if @user.nil?
       # user doesn't exist
       
-      password = ::BCrypt::Password.create("promo")
+      password = ::BCrypt::Password.create(nil)
       password = password.force_encoding(Encoding::UTF_8) if password.encoding == Encoding::ASCII_8BIT
       
       new_user = User.create(uid: uid, email: email, firstname: first_name, lastname: last_name, image: image, role: "user", crypted_password: password)

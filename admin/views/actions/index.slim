@@ -40,8 +40,8 @@ div class="tabs-content"
         tr class='list-row'
           td class='list-column list-selectable' = check_box_tag 'action_ids[]', :value => action.id, :class => 'list-selectable-checkbox'
           td class='list-column' = action.id
-          td class='list-column' = action.user_id
-          td class='list-column' = action.activity_id
+          td class='list-column' = User.fullname(action.user_id)
+          td class='list-column' = Activity.find(action.activity_id).name
           td class='list-column' = action.confirmed ? tag_icon(:ok) : tag_icon(:remove)
           td class='list-column' = action.confirmation
           td class='list-column' = action.points

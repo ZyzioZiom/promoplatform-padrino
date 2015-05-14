@@ -26,9 +26,9 @@ div class="tabs-content"
                       = submit_tag  pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       div class='btn btn-default btn-small cancel' = pat(:cancel)
         th class='header' = mat(:message, :id)
-        th class='header' = mat(:message, :who)
+        th class='header' = mat(:message, :user_id)
         th class='header' = mat(:message, :content)
-        th class='header' = mat(:message, :what)
+        th class='header' = mat(:message, :activity_id)
         th class='header' = mat(:message, :created_at)
         th class='header' = mat(:message, :updated_at)
         th class='header list-row-action-header'
@@ -38,9 +38,9 @@ div class="tabs-content"
         tr class='list-row'
           td class='list-column list-selectable' = check_box_tag 'message_ids[]', :value => message.id, :class => 'list-selectable-checkbox'
           td class='list-column' = message.id
-          td class='list-column' = message.who
+          td class='list-column' = User.fullname(message.user_id)
           td class='list-column' = message.content
-          td class='list-column' = message.what
+          td class='list-column' = message.activity_id ? Activity.find(message.activity_id).name : nil
           td class='list-column' = time_ago_in_words message.created_at
           td class='list-column' = time_ago_in_words message.updated_at
           td class='list-column list-row-action'

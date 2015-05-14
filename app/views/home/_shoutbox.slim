@@ -3,14 +3,14 @@ div style = "position: absolute; bottom: 0; width: 75%; margin-bottom: 50px;"
   div style = "overflow-y: scroll; max-height:200px;"
 
     -Message.recent_messages.each do |message|
-      -user = User.find(message.who)
+      -user = User.find(message.user_id)
       p=
       = "#{message.created_at.strftime('%H:%M')} "
       = link_to "#{User.fullname(user)}", url_for(:users, :index, :id => user.id)  
       = " #{message.content}"
-      -if message.what
-        -what = Activity.find(message.what)
-        = link_to "#{what.name}", url_for(:activities, :index, :id => message.what)
+      -if message.activity_id
+        -activity = Activity.find(message.activity_id)
+        = link_to "#{activity.name}", url_for(:activities, :index, :id => message.activity_id)
 
   hr
 

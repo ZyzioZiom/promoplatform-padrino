@@ -1,7 +1,7 @@
 PromoplatformPadrino::App.controllers :messages do
   post :create do
     message = Message.new
-    message.who = session[:current_user].id
+    message.user_id = current_user.id
     message.content = params[:message][:content]
     
     if message.save!

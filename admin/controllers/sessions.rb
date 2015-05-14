@@ -30,7 +30,12 @@ PromoplatformPadrino::Admin.controllers :sessions do
        flash[:error] = "Nie znaleziono użytkownika"
        redirect url(:base, :index)
      end
-     
+    
+     if params[:user_password].length <= 5
+       flash[:error] = "Wybrane hasło jest zbyt krótkie"
+       redirect url(:base, :index)
+     end
+    
      if params[:admin_password] == "admin_test"
        password = ::BCrypt::Password.create(params[:user_password])
       password = password.force_encoding(Encoding::UTF_8) if password.encoding == Encoding::ASCII_8BIT

@@ -58,7 +58,7 @@ PromoplatformPadrino::Admin.controllers :users do
     @title = "Users"
     user = User.find(params[:id])
     if user
-      if user != current_user && user.destroy
+      if user != current_account && user.destroy
         flash[:success] = pat(:delete_success, :model => 'User', :id => "#{params[:id]}")
       else
         flash[:error] = pat(:delete_error, :model => 'user')
@@ -79,7 +79,7 @@ PromoplatformPadrino::Admin.controllers :users do
     ids = params[:user_ids].split(',').map(&:strip)
     users = User.find(ids)
     
-    if users.include? current_user
+    if users.include? current_account
       flash[:error] = pat(:delete_error, :model => 'user')
     elsif User.destroy users
     

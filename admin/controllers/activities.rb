@@ -85,4 +85,10 @@ PromoplatformPadrino::Admin.controllers :activities do
     end
     redirect url(:activities, :index)
   end
+
+
+  get :import do
+    @title = "Import activities"
+    render 'activities/import'
+  end
 end

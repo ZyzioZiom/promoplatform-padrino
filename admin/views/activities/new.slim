@@ -1,6 +1,7 @@
 ul class="nav nav-tabs"
   li = link_to tag_icon(:list, pat(:list)), url(:activities, :index)
   li class="active" = link_to tag_icon(:plus, pat(:new)), url(:activities, :new)
+  li = link_to tag_icon(:plus, pat("Import CSV")), url(:activities, :import)
 
 div class="tabs-content"
   = form_for :activity, url(:activities, :create), :class => 'form-horizontal' do |f|

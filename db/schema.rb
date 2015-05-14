@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 12) do
+ActiveRecord::Schema.define(version: 14) do
 
   create_table "actions", force: :cascade do |t|
     t.integer  "user_id"
@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(version: 12) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer  "who"
+    t.integer  "user_id"
     t.string   "content"
-    t.integer  "what"
+    t.integer  "activity_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

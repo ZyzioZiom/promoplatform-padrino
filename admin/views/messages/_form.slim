@@ -1,21 +1,21 @@
-- error = @message.errors.include?(:who)
+- error = @message.errors.include?(:user_id)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :who, :class => 'control-label'
+  = f.label :user_id, :class => 'control-label'
   div class='controls'
-    = f.number_field :who, :class => 'form-control input-large input-with-feedback', :autofocus => true
-    span class='help-inline' = error ? f.error_message_on(:who, :class => 'text-error') : pat("Identyfikator użytkownika tworzącego wiadomość")
+    = f.number_field :user_, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    span class='help-inline' = error ? f.error_message_on(:user_id, :class => 'text-error') : pat("Identyfikator użytkownika tworzącego wiadomość")
 - error = @message.errors.include?(:content)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :content, :class => 'control-label'
   div class='controls'
     = f.text_field :content, :class => 'form-control input-large input-with-feedback'
     span class='help-inline' = error ? f.error_message_on(:content, :class => 'text-error') : pat("Treść wiadomości")
-- error = @message.errors.include?(:what)
+- error = @message.errors.include?(:activity_id)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :what, :class => 'control-label'
+  = f.label :activity_id, :class => 'control-label'
   div class='controls'
-    = f.number_field :what, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:what, :class => 'text-error') : pat("Identyfikator aktywności, której dotyczy wiadomość")
+    = f.number_field :activity_id, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:activity_id, :class => 'text-error') : pat("Identyfikator aktywności, której dotyczy wiadomość")
 
 div class="form-actions"
   = f.submit pat(:save), :class => 'btn btn-primary'
