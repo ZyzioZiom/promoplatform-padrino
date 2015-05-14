@@ -2,7 +2,7 @@
 # You can use other adapters like:
 #
    ActiveRecord::Base.configurations[:production] = {
-     :adapter   => 'postgres',
+     :adapter   => 'postgresql',
      :encoding  => 'utf8',
      :reconnect => true,
      :database  => 'd8eqpc0k42ing0',
