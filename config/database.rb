@@ -13,23 +13,23 @@
      :port      => 5432
    }
 #
-ActiveRecord::Base.configurations[:development] = {
-  :adapter => 'sqlite3',
-  :database => Padrino.root('db', 'promoplatform_padrino_development.db')
-
-}
-
-ActiveRecord::Base.configurations[:production] = {
-  :adapter => 'sqlite3',
-  :database => Padrino.root('db', 'promoplatform_padrino_production.db')
-
-}
-
-ActiveRecord::Base.configurations[:test] = {
-  :adapter => 'sqlite3',
-  :database => Padrino.root('db', 'promoplatform_padrino_test.db')
-
-}
+#ActiveRecord::Base.configurations[:development] = {
+#  :adapter => 'sqlite3',
+#  :database => Padrino.root('db', 'promoplatform_padrino_development.db')
+#
+#}
+#
+#ActiveRecord::Base.configurations[:production] = {
+#  :adapter => 'sqlite3',
+#  :database => Padrino.root('db', 'promoplatform_padrino_production.db')
+#
+#}
+#
+#ActiveRecord::Base.configurations[:test] = {
+#  :adapter => 'sqlite3',
+#  :database => Padrino.root('db', 'promoplatform_padrino_test.db')
+#
+#}
 
 # Setup our logger
 ActiveRecord::Base.logger = logger
