@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :actions, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  
   attr_accessor :password, :password_confirmation
 
   # Validations
@@ -48,6 +51,8 @@ class User < ActiveRecord::Base
       "#{user.firstname} #{user.lastname}"
     end
   end
+  
+  
   
    
 end

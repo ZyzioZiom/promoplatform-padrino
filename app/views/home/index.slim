@@ -1,25 +1,8 @@
-h1= {:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info'}.map { |type, class_name| flash_tag(type, :class => "alert alert-#{class_name} fade in", :bootstrap => true) }.join.html_safe
-hr
-
 
 p= "Home controller" 
 p= $test_variable
 
 
 hr
-h1 Czat
-div style = "overflow-y: scroll; max-height:200px;"
 
-  -Message.recent_messages.each do |message|
-    -user = User.find(message.who)
-    p=
-    = "#{message.created_at.strftime('%H:%M')} "
-    = link_to "#{user.firstname} #{user.lastname}", url_for(:users, :index, :id => user.id)  
-    = " #{message.content}"
-    -if message.what
-      -what = Activity.find(message.what)
-      = link_to "#{what.name}", url_for(:activities, :index, :id => message.what)
-
-hr
-
-= partial 'home/new_message'
+=partial 'home/shoutbox'

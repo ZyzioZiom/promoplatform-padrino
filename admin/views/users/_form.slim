@@ -1,43 +1,53 @@
 - error = @user.errors.include?(:firstname)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :firstname, :class => 'control-label'
+  = f.label "Imię", :class => 'control-label'
   div class='controls'
     = f.text_field :firstname, :class => 'form-control input-large input-with-feedback', :autofocus => true
-    span class='help-inline' = error ? f.error_message_on(:firstname, :class => 'text-error') : pat(:example)
+    span class='help-inline' = error ? f.error_message_on(:firstname, :class => 'text-error') : nil
+    
+    
 - error = @user.errors.include?(:lastname)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :lastname, :class => 'control-label'
+  = f.label "Nazwisko", :class => 'control-label'
   div class='controls'
     = f.text_field :lastname, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:lastname, :class => 'text-error') : pat(:example)
+    span class='help-inline' = error ? f.error_message_on(:lastname, :class => 'text-error') : nil
+    
+    
 - error = @user.errors.include?(:email)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :email, :class => 'control-label'
   div class='controls'
     = f.text_field :email, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:email, :class => 'text-error') : pat(:example)
+    span class='help-inline' = error ? f.error_message_on(:email, :class => 'text-error') : nil
+    
 - error = @user.errors.include?(:password)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :password, :class => 'control-label'
+  = f.label "Hasło", :class => 'control-label'
   div class='controls'
     = f.password_field :password, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:password, :class => 'text-error') : pat(:example)
+    span class='help-inline' = error ? f.error_message_on(:password, :class => 'text-error') : pat("Możesz zmienić swoje hasło")
+    
+    
 - error = @user.errors.include?(:password_confirmation)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :password_confirmation, :class => 'control-label'
+  = f.label "Potwierdź hasło", :class => 'control-label'
   div class='controls'
     = f.password_field :password_confirmation, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:password_confirmation, :class => 'text-error') : pat(:example)
+    span class='help-inline' = error ? f.error_message_on(:password_confirmation, :class => 'text-error') : nil
+    
+    
 - error = @user.errors.include?(:role)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :role, :class => 'control-label'
+  = f.label "Uprawnienia", :class => 'control-label'
   div class='controls'
-    = f.text_field :role, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:role, :class => 'text-error') : pat(:example)
+    = f.select(:role, :options => [['Zwykły użytkownik', 'user'], ['Administrator', 'admin']], :class => 'form-control input-large input-with-feedback')
+    span class='help-inline' = error ? f.error_message_on(:role, :class => 'text-error') : pat("Nadaj uprawnienia administracyjne")
+
 
 div class="form-actions"
-  = f.submit pat(:save), :class => 'btn btn-primary'
+  = f.submit "Zapisz", :class => 'btn btn-primary'
   |&nbsp;
-  = f.submit pat(:save_and_continue), :class => 'btn btn-info', :firstname => 'save_and_continue'
+  = f.submit "Zapisz i kontynuuj", :class => 'btn btn-info', :firstname => 'save_and_continue'
   |&nbsp;
-  = link_to pat(:cancel), url(:users, :index), :class => 'btn btn-default'
+  = link_to "Anuluj", url(:users, :index), :class => 'btn btn-default'

@@ -25,8 +25,9 @@ PromoplatformPadrino::App.controllers :auth do
       
       new_user = User.create(uid: uid, email: email, firstname: first_name, lastname: last_name, image: image, role: "user", crypted_password: password)
       
-      current_user = User.find(new_user)
-      
+      @user = User.find(new_user)
+      session[:current_user] = @user
+      current_user = session[:current_user]
       # TODO: send welcome email
       
       flash[:success] = "Witaj na Promo Platformie, #{current_user.firstname}"
@@ -34,7 +35,8 @@ PromoplatformPadrino::App.controllers :auth do
       redirect_to 'home'
     else
       
-      current_user = @user
+      session[:current_user] = @user
+      current_user = session[:current_user]
       
       flash[:success] = "Witaj ponownie, #{current_user.firstname}"
       

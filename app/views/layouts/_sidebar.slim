@@ -12,10 +12,11 @@ hr
 -levels = Level.order(:points)
 
 -current_level = nil
--next_level = nil
+-next_level = levels.first
 
 -levels.each_with_index do |level,index|
   -if actions >= level.points
+    
     -current_level = level
     -next_level = levels[index + 1]
 
@@ -42,5 +43,4 @@ p= "#{actions} punktów"
     
 hr
 
-
-p= link_to "Wyloguj", '/logout'
+button type = "button" class = "btn btn-danger" = link_to "Wyloguj", '/logout', :style => "color: #fff;"

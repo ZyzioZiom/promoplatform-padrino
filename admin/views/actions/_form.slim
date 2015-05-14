@@ -1,33 +1,33 @@
 - error = @action.errors.include?(:user_id)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :user_id, :class => 'control-label'
+  = f.label "Identyfikator użytkownika", :class => 'control-label'
   div class='controls'
-    = f.text_field :user_id, :class => 'form-control input-large input-with-feedback', :autofocus => true
-    span class='help-inline' = error ? f.error_message_on(:user_id, :class => 'text-error') : pat(:example)
+    = f.number_field :user_id, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    span class='help-inline' = error ? f.error_message_on(:user_id, :class => 'text-error') : nil
 - error = @action.errors.include?(:activity_id)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :activity_id, :class => 'control-label'
+  = f.label "Identyfikator aktywności", :class => 'control-label'
   div class='controls'
-    = f.text_field :activity_id, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:activity_id, :class => 'text-error') : pat(:example)
+    = f.number_field :activity_id, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:activity_id, :class => 'text-error') : nil
 - error = @action.errors.include?(:confirmed)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :confirmed, :class => 'control-label'
+  = f.label "Aktywność potwierdzona?", :class => 'control-label'
   div class='controls'
     = f.check_box :confirmed, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:confirmed, :class => 'text-error') : pat(:example)
+    span class='help-inline' = error ? f.error_message_on(:confirmed, :class => 'text-error') : nil
 - error = @action.errors.include?(:confirmation)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :confirmation, :class => 'control-label'
+  = f.label "Link do potwierdzenia", :class => 'control-label'
   div class='controls'
     = f.text_field :confirmation, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:confirmation, :class => 'text-error') : pat(:example)
+    span class='help-inline' = error ? f.error_message_on(:confirmation, :class => 'text-error') : nil
 - error = @action.errors.include?(:points)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :points, :class => 'control-label'
+  = f.label "Punkty przyznane za udział w aktywności", :class => 'control-label'
   div class='controls'
-    = f.text_field :points, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:points, :class => 'text-error') : pat(:example)
+    = f.number_field :points, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:points, :class => 'text-error') : nil
 
 div class="form-actions"
   = f.submit pat(:save), :class => 'btn btn-primary'

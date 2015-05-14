@@ -1,6 +1,9 @@
 ul class="nav nav-tabs"
   li class="active" = link_to tag_icon(:list, pat(:list)), url(:levels, :index)
   li = link_to tag_icon(:plus, pat(:new)), url(:levels, :new)
+hr
+p= "Pierwszy poziom musi mieć zawsze zero punktów"
+p= "Dwa poziomy nie mogą mieć przydzielonej takiej samej ilości punktów"
 
 div class="tabs-content"
   table class="table table-striped table-hover table-condensed" id="list"

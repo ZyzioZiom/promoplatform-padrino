@@ -1,7 +1,3 @@
-= {:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info'}.map { |type, class_name| flash_tag(type, :class => "alert alert-#{class_name} fade in", :bootstrap => true) }.join.html_safe
-hr
-
-
 #show
   .activity
     h1 class = "title" = @activity.name

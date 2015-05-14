@@ -1,5 +1,15 @@
 class Action < ActiveRecord::Base
-
+  belongs_to :activity
+  belongs_to :user
+  
+  validates_associated :user, :activity
+  
+  
+  validates :user, :activity, :user_id, :activity_id, presence: true
+  validates :confirmation, presence: true, if: :confirmed?
+  validates :points, presence: true, numericality: { only_integer: true }
+  
+  
   def self.signed(activity_id)
     Action.where(activity_id: activity_id)
   end
