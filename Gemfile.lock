@@ -85,6 +85,7 @@ GEM
       padrino-core (= 0.12.5)
     padrino-support (0.12.5)
       activesupport (>= 3.1)
+    pg (0.18.1)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-protection (1.5.3)
@@ -117,5 +118,6 @@ DEPENDENCIES
   bcrypt
   omniauth-google-oauth2
   padrino (= 0.12.5)
+  pg
   rake
   slim
