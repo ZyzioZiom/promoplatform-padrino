@@ -17,7 +17,6 @@ gem 'rake'
 gem 'bcrypt'
 gem 'slim'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
-gem 'sqlite3'
 gem 'pg'
 # Test requirements
 
