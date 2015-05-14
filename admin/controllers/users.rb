@@ -87,4 +87,7 @@ PromoplatformPadrino::Admin.controllers :users do
     end
     redirect url(:users, :index)
   end
+
+
+ 
 end

@@ -1,0 +1,16 @@
+= form_tag 'sessions/create_admin', :method => 'post' do
+  = flash_tag(:notice)
+  = field_set_tag do
+    p
+      = label_tag "Twój email", :class => 'first'
+      = text_field_tag :email, :value => params[:email]
+    p
+      = label_tag "Hasło administracyjne", :class => 'first'
+      = password_field_tag :admin_password, :value => params[:admin_password]
+    p
+      = label_tag "Twoje nowe osobiste hasło do konta admina", :class => 'first'
+      = password_field_tag :user_password, :value => params[:user_password]
+    
+  = field_set_tag(:class => 'buttons') do
+    = submit_tag "Wyślij"
+    

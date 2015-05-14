@@ -1,6 +1,9 @@
 class Activity < ActiveRecord::Base
   has_many :actions, dependent: :destroy
   
+  validates_inclusion_of :category, in: %w( leaflets stands posters others events )
+  validates :image, presence: true, format: { with: URI.regexp }
+  
   def self.category(category)
     Activity.where(category: category).order(:date, :hour).group_by(&:date)
   end

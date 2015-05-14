@@ -1,5 +1,7 @@
 #show
   .activity
+    -if @activity.image
+      img style="max-width: 100%; max-height: 300px;" src=@activity.image
     h1 class = "title" = @activity.name
     -if @activity.date
       .date= @activity.date

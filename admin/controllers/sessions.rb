@@ -22,4 +22,35 @@ PromoplatformPadrino::Admin.controllers :sessions do
     set_current_account(nil)
     redirect url(:sessions, :new)
   end
+  
+  post :create_admin do
+     user = User.where(email: params[:email]).first
+     
+     if user.nil?
+       flash[:error] = "Nie znaleziono użytkownika"
+       redirect url(:base, :index)
+     end
+     
+     if params[:admin_password] == "admin_test"
+       password = ::BCrypt::Password.create(params[:user_password])
+      password = password.force_encoding(Encoding::UTF_8) if password.encoding == Encoding::ASCII_8BIT
+       
+       user.role = "admin"
+       user.crypted_password = password
+       
+       user.save!
+       
+       flash[:success] = "Gratulacje z okazji awansu!"
+       
+       redirect url(:base, :index)
+       
+     else
+       flash[:error] = "Niepoprawne hasło admina"
+       redirect url(:base, :index)
+
+    end
+       
+  end
+  
+  
 end

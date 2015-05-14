@@ -1,105 +1,143 @@
 - error = @activity.errors.include?(:category)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :category, :class => 'control-label'
+  = f.label "Kategoria", :class => 'control-label'
   div class='controls'
-    = f.text_field :category, :class => 'form-control input-large input-with-feedback', :autofocus => true
-    span class='help-inline' = error ? f.error_message_on(:category, :class => 'text-error') : pat(:example)
-- error = @activity.errors.include?(:hour)
-fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :hour, :class => 'control-label'
-  div class='controls'
-    = f.text_field :hour, :type => :time, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:hour, :class => 'text-error') : pat(:example)
-- error = @activity.errors.include?(:day)
-fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :day, :class => 'control-label'
-  div class='controls'
-    = f.text_field :day, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:day, :class => 'text-error') : pat(:example)
-- error = @activity.errors.include?(:date)
-fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :date, :class => 'control-label'
-  div class='controls'
-    = f.text_field :date, :type => :date, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:date, :class => 'text-error') : pat(:example)
-- error = @activity.errors.include?(:place)
-fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :place, :class => 'control-label'
-  div class='controls'
-    = f.text_field :place, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:place, :class => 'text-error') : pat(:example)
+    = f.select(:category, :options => [["Ulotki", "leaflets"], ["Standy", "stands"], ["Plakaty", "posters"], ["Eventy", "events"], ["Inne", "others"]], :class => 'form-control input-large input-with-feedback', :autofocus => true)
+    span class='help-inline' = error ? f.error_message_on(:category, :class => 'text-error') : nil
+    
 - error = @activity.errors.include?(:name)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :name, :class => 'control-label'
+  = f.label "Nazwa aktywności", :class => 'control-label'
   div class='controls'
     = f.text_field :name, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:name, :class => 'text-error') : pat(:example)
+    span class='help-inline' = error ? f.error_message_on(:name, :class => 'text-error') : nil
+    
+- error = @activity.errors.include?(:hour)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label "Godzina", :class => 'control-label'
+  div class='controls'
+    = f.text_field :hour, :type => :time, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:hour, :class => 'text-error') : pat("W przypadku aktywności, gdzie czas jest istotny")
+    
+    
+- error = @activity.errors.include?(:date)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label "Data", :class => 'control-label'
+  div class='controls'
+    = f.text_field :date, :type => :date, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:date, :class => 'text-error') : nil
+    
+    
+- error = @activity.errors.include?(:place)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label "Miejsce", :class => 'control-label'
+  div class='controls'
+    = f.text_field :place, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:place, :class => 'text-error') : pat("Gdzie odbywa się aktywność")
+    
+    
+    
+    
 - error = @activity.errors.include?(:description)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :description, :class => 'control-label'
+  = f.label "Opis aktywności", :class => 'control-label'
   div class='controls'
     = f.text_area :description, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:description, :class => 'text-error') : pat(:example)
+    span class='help-inline' = error ? f.error_message_on(:description, :class => 'text-error') : nil
+    
+    
+    
 - error = @activity.errors.include?(:points)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :points, :class => 'control-label'
+  = f.label "Punkty", :class => 'control-label'
   div class='controls'
-    = f.text_field :points, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:points, :class => 'text-error') : pat(:example)
+    = f.number_field :points, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:points, :class => 'text-error') : pat("Ilość punktów przydzielanych za aktywność")
+    
+    
+    
 - error = @activity.errors.include?(:image)
 fieldset class='control-group#{error ? ' has-error' : ''}'
-  = f.label :image, :class => 'control-label'
+  = f.label "Obrazek", :class => 'control-label'
   div class='controls'
-    = f.text_field :image, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:image, :class => 'text-error') : pat(:example)
+    = f.url_field :image, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:image, :class => 'text-error') : pat("Jeśli chcesz, aby aktywność miała swój obrazek, wklej link do niego tutaj")
+    
+    
+    
+    
+    
+    
+h4= "Produkty, które promuje aktywność:"
+
 - error = @activity.errors.include?(:global_talents)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :global_talents, :class => 'control-label'
-  div class='controls'
-    = f.check_box :global_talents, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:global_talents, :class => 'text-error') : pat(:example)
+  div 
+    = f.check_box :global_talents
+    span class='help-inline' = error ? f.error_message_on(:global_talents, :class => 'text-error') : nil
+      
 - error = @activity.errors.include?(:global_citizen)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :global_citizen, :class => 'control-label'
   div class='controls'
-    = f.check_box :global_citizen, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:global_citizen, :class => 'text-error') : pat(:example)
+    = f.check_box :global_citizen
+    span class='help-inline' = error ? f.error_message_on(:global_citizen, :class => 'text-error') : nil
+      
+      
 - error = @activity.errors.include?(:career_days)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :career_days, :class => 'control-label'
   div class='controls'
-    = f.check_box :career_days, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:career_days, :class => 'text-error') : pat(:example)
+    = f.check_box :career_days
+    span class='help-inline' = error ? f.error_message_on(:career_days, :class => 'text-error') : nil
+    
+    
+    
 - error = @activity.errors.include?(:career_forum)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :career_forum, :class => 'control-label'
   div class='controls'
-    = f.check_box :career_forum, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:career_forum, :class => 'text-error') : pat(:example)
+    = f.check_box :career_forum
+    span class='help-inline' = error ? f.error_message_on(:career_forum, :class => 'text-error') : nil
+    
+    
+    
 - error = @activity.errors.include?(:future_leaders)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :future_leaders, :class => 'control-label'
   div class='controls'
-    = f.check_box :future_leaders, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:future_leaders, :class => 'text-error') : pat(:example)
+    = f.check_box :future_leaders
+    span class='help-inline' = error ? f.error_message_on(:future_leaders, :class => 'text-error') : nil
+    
+    
+    
 - error = @activity.errors.include?(:aiesec_university)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :aiesec_university, :class => 'control-label'
   div class='controls'
-    = f.check_box :aiesec_university, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:aiesec_university, :class => 'text-error') : pat(:example)
+    = f.check_box :aiesec_university
+    span class='help-inline' = error ? f.error_message_on(:aiesec_university, :class => 'text-error') : nil
+    
+    
+    
 - error = @activity.errors.include?(:youth_to_business_forum)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :youth_to_business_forum, :class => 'control-label'
   div class='controls'
-    = f.check_box :youth_to_business_forum, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:youth_to_business_forum, :class => 'text-error') : pat(:example)
+    = f.check_box :youth_to_business_forum
+    span class='help-inline' = error ? f.error_message_on(:youth_to_business_forum, :class => 'text-error') : nil
+    
+    
+    
 - error = @activity.errors.include?(:global_host)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :global_host, :class => 'control-label'
   div class='controls'
-    = f.check_box :global_host, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:global_host, :class => 'text-error') : pat(:example)
+    = f.check_box :global_host
+    span class='help-inline' = error ? f.error_message_on(:global_host, :class => 'text-error') : nil
+    
+    
 
 div class="form-actions"
   = f.submit pat(:save), :class => 'btn btn-primary'

@@ -5,41 +5,7 @@ div style = "text-align: center;"
 
 hr
 
-
--# show current level of an user
--actions = Action.sum_points(current_user)
-
--levels = Level.order(:points)
-
--current_level = nil
--next_level = levels.first
-
--levels.each_with_index do |level,index|
-  -if actions >= level.points
-    
-    -current_level = level
-    -next_level = levels[index + 1]
-
-
-img style = "width: 100%; border-radius: 50%;" src = current_level.image
-
-p= current_level.name
-
--if current_level.description
-  p= current_level.description
-  
-p= "#{actions} punktów"
-
--if next_level.nil?
-  -percent = 100
--else
-  -percent = (actions.to_f - current_level.points) / next_level.points * 100
-  -percent = percent.floor
-
-
-.progress
-  .progress-bar.progress-bar-success role="progressbar" aria-valuenow="#{percent}" aria-valuemin="0" aria-valuemax="100" style="width: #{percent}%;"
-    span class="sr-only" = "#{percent}%"
+=partial 'layouts/current_level'
     
 hr
 

@@ -9,10 +9,12 @@ div class="base-text"
   -if current_account.role == "user"
     p Aby uzyskać uprawnienia administratora, wpisz hasło poniżej
     
+    =partial 'base/register_form'
+    
+    
+    
+    
   -if current_account.role == "admin"
-    h3 
-    |Uwaga! Promoplatforma
-    b  NIE JEST 
-    |idiotoodporna - czytaj instrukcje i nie rób głupot
+    h3 Witaj Adminie
     
 
