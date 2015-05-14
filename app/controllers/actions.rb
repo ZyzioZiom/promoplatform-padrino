@@ -21,7 +21,6 @@ PromoplatformPadrino::App.controllers :actions do
     action.points = activity.points
     
     if action.save
-      flash[:notice] = 'Zapisano na aktywność'
       
       message = Message.new
       message.user_id = current_user.id
@@ -43,6 +42,7 @@ PromoplatformPadrino::App.controllers :actions do
     @action.confirmation = params[:action][:confirmation]
     
     if @action.save
+      flash[:success] = "Aktywność potwierdzona #{10004.chr}"
       redirect back
     end
   end

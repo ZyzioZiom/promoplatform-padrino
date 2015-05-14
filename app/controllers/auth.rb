@@ -28,7 +28,7 @@ PromoplatformPadrino::App.controllers :auth do
       current_user = session[:current_user]
       # TODO: send welcome email
       
-      flash[:success] = "Witaj na Promo Platformie, #{current_user.firstname}"
+      flash[:success] = "Witaj na Promoplatformie, #{current_user.firstname}! Fajnie, że jesteś #{9829.chr}"
       
       redirect_to 'home'
     else
@@ -36,7 +36,7 @@ PromoplatformPadrino::App.controllers :auth do
       session[:current_user] = @user
       current_user = session[:current_user]
       
-      flash[:success] = "Witaj ponownie, #{current_user.firstname}"
+      flash[:success] = "Witaj ponownie, #{current_user.firstname}! Świetnie dziś wyglądasz #{9786.chr} "
       
       redirect_to 'home'
     end
