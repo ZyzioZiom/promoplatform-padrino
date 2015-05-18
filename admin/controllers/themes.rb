@@ -47,6 +47,8 @@ PromoplatformPadrino::Admin.controllers :themes do
   end
   
   post :change_theme do
+    $theme = params[:theme]
+    
     File.open "lib/theme.rb", "w" do |f|
       f.write("$theme = '#{params[:theme]}'")
     end
