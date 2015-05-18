@@ -27,7 +27,10 @@ html lang='en'
             - project_modules.each do |project_module|
               li class=("navbar-module #{'active' if request.path_info =~ /^#{project_module.path}/}")
                 = link_to project_module.human_name, url(project_module.path)
-
+            li class = "navbar-module"
+              = link_to "Wygląd", url(:themes, :index)
+              
+              
     div class='container main'
       div class='main-wrapper'
         =  {:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info'}.map { |type, class_name| flash_tag(type, :class => "alert alert-#{class_name} fade in", :bootstrap => true) }.join.html_safe

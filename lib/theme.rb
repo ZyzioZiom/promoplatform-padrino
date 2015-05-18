@@ -1,1 +1,1 @@
-$theme = "mario"
+$theme = 'mario'

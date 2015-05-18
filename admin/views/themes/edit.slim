@@ -1,0 +1,16 @@
+ul class="nav nav-tabs"
+  li = link_to tag_icon(:list, pat("Aktualny")), url(:themes, :index)
+  li class="active" = link_to tag_icon(:edit, pat(:edit)), url(:themes, :edit)
+  li = link_to tag_icon(:plus, pat(:new)), url(:themes, :new)
+
+
+h1 = "Edytujesz mood: #{$theme}"
+
+= form_tag :update  do
+  = field_set_tag do
+    p
+      = label_tag "Plik #{$theme}.css", :class => 'first'
+    p = text_area_tag :css_content, :value => @css, :style => "height: 400px; width: 80%;"
+
+    = submit_tag "Aktualizuj"
+

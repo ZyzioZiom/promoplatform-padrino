@@ -44,7 +44,7 @@ PromoplatformPadrino::App.controllers :auth do
   end
 
   get :google_oauth2_callback_failed, :map => "/auth/failure" do
-    flash[:error] = "Error logging with Google #{params[:message]}"
+    flash[:error] = "Błąd logowania: #{params[:message]}"
 
   end
 

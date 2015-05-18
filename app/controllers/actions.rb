@@ -42,7 +42,7 @@ PromoplatformPadrino::App.controllers :actions do
     @action.confirmation = params[:action][:confirmation]
     
     if @action.save
-      flash[:success] = "Aktywność potwierdzona #{10004.chr}"
+      flash[:success] = "#{$action_confirmed} #{10004.chr}"
       redirect back
     end
   end

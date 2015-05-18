@@ -1,0 +1,16 @@
+ul class="nav nav-tabs"
+  li class="active" = link_to tag_icon(:list, pat("Aktualny")), url(:themes, :index)
+  li = link_to tag_icon(:edit, pat("Edytuj mood")), url(:themes, :edit)
+  li = link_to tag_icon(:plus, pat(:new)), url(:themes, :new)
+  
+div class="tabs-content"
+  h1 = "Aktualny mood: #{$theme}"
+    
+
+= form_tag 'themes/change_theme' do
+  = field_set_tag do
+    p
+      = label_tag 'Zmień mood promoplatformy', :class => 'first'
+    p = select_tag :theme, :options => ["default", "mario", "test", "aiesec"]
+    = submit_tag "Zmień mood"
+

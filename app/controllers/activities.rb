@@ -20,7 +20,6 @@ PromoplatformPadrino::App.controllers :activities do
       end
       
     else
-      
       @activities = Activity.category(params[:id])
       
       unless @activities.nil?
