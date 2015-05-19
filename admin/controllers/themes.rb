@@ -16,17 +16,14 @@ PromoplatformPadrino::Admin.controllers :themes do
     if @theme.save
       @title = pat(:create_title, :model => "theme #{@theme.id}")
       
-      unless Dir.exist?("public/images/#{@theme.name}")
-        Dir.mkdir("public/images/#{@theme.name}")
-      end
+      Theme.create_images_directory(@theme.name)
       
+      Theme.create_images(@theme.name)
       
+      Theme.create_css(@theme.name)
       
-      
+
       flash[:success] = pat(:create_success, :model => 'Theme')
-      
-      
-      
       params[:save_and_continue] ? redirect(url(:themes, :index)) : redirect(url(:themes, :edit, :id => @theme.id))
     else
       @title = pat(:create_title, :model => 'theme')
@@ -46,6 +43,13 @@ PromoplatformPadrino::Admin.controllers :themes do
     end
   
     if @theme
+      current_theme = File.open "public/stylesheets/#{@theme.name}.css", "r"
+      @css = ""
+
+      current_theme.each do |line|
+        @css << line
+    end
+  
       render 'themes/edit'
     else
       flash[:warning] = pat(:create_error, :model => 'theme', :id => "#{params[:id]}")
@@ -57,7 +61,15 @@ PromoplatformPadrino::Admin.controllers :themes do
     @title = pat(:update_title, :model => "theme #{params[:id]}")
     @theme = Theme.find(params[:id])
     if @theme
+      @name = @theme.name
+      
       if @theme.update_attributes(params[:theme])
+        
+        if @name != @theme.name
+          Theme.rename(@name, @theme.name)
+          flash[:notice] = "Zmieniono nazwę mooda"
+        end
+        
         flash[:success] = pat(:update_success, :model => 'Theme', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?
           redirect(url(:themes, :index)) :
@@ -83,6 +95,7 @@ PromoplatformPadrino::Admin.controllers :themes do
     
     if theme
       if theme.destroy
+        Theme.delete(theme.name)
         flash[:success] = pat(:delete_success, :model => 'Theme', :id => "#{params[:id]}")
       else
         flash[:error] = pat(:delete_error, :model => 'theme')
@@ -94,5 +107,12 @@ PromoplatformPadrino::Admin.controllers :themes do
     end
   end
 
-  
+  post :update_css do
+    @content = params[:css_content]
+    File.open "public/stylesheets/#{params[:theme]}.css", "w" do |f|
+      f.write(@content)
+    end
+
+    redirect back
+  end
 end

@@ -1,4 +1,4 @@
-"
+default_css = "
 /* okno powitalne przed zalogowaniem */
 .body-welcome {
   min-width:100%; 

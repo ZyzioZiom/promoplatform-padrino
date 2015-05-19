@@ -5,7 +5,7 @@
   padding:0;
   margin:0;
   font-family:Open Sans, Helvetica, Arial, sans-serif;
-  background: url(../images/default/login-background.jpg) no-repeat bottom center;  /* tło okna powitalnego */
+  background: url(../images/aaa/login-background.jpg) no-repeat bottom center;  /* tło okna powitalnego */
   background-size: cover; 
   background-attachment: fixed;
 }
@@ -24,7 +24,7 @@
   padding:0;
   margin:0;
   font-family:Open Sans, Helvetica, Arial, sans-serif;
-  background: url(../images/default/home-background.jpg) no-repeat bottom center;  /* tło */
+  background: url(../images/aaa/home-background.jpg) no-repeat bottom center;  /* tło */
   background-size: cover;
   background-attachment: fixed;
 }

@@ -6,3 +6,12 @@ ul class="nav nav-tabs"
 div class="tabs-content"
   = form_for :theme, url(:themes, :update, :id => @theme.id), :method => :put, :class => 'form-horizontal' do |f|
     = partial 'themes/form', :locals => { :f => f }
+
+= form_tag '../update_css'  do
+  = field_set_tag do
+    
+    p = label_tag "Plik #{@theme.name}.css", :class => 'first'
+    p = text_area_tag :css_content, :value => @css, :style => "height: 400px; width: 80%;"
+    p = hidden_field_tag :theme, :value => @theme.name
+    
+    = submit_tag "Aktualizuj CSS"
