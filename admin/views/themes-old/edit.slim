@@ -1,0 +1,33 @@
+ul class="nav nav-tabs"
+  li = link_to tag_icon(:list, pat("Aktualny")), url(:themes, :index)
+  li class="active" = link_to tag_icon(:edit, pat(:edit)), url(:themes, :edit)
+  li = link_to tag_icon(:plus, pat(:new)), url(:themes, :new)
+
+
+h1 = "Edytujesz mood: #{$theme}"
+
+= form_tag :update  do
+  = field_set_tag do
+    p = label_tag "Wiadomość powitalna - nagłówek"
+    p = text_field_tag :welcome_heading, :value => $welcome_heading, :style => "width: 80%;"
+    
+    p = label_tag "Wiadomość powitalna - treść"
+    p = text_area_tag :welcome_message, :value => $welcome_message, :style => "width: 80%;"
+    
+    p = label_tag "Aktywność już potwierdzona"
+    p = text_field_tag :activity_confirmed, :value => $activity_confirmed, :style => "width: 80%;"
+    
+    p = label_tag "Tytuł okna czatu"
+    p = text_field_tag :chat_title, :value => $chat_title, :style => "width: 80%;"
+    
+    p = label_tag "Treść przycisku Wyślij wiadomość"
+    p = text_field_tag :send_message, :value => $send_message, :style => "width: 80%;"
+    
+    p = label_tag "Potwierdzenie aktywności"
+    p = text_field_tag :action_confirmed, :value => $action_confirmed, :style => "width: 80%;"
+    
+    p = label_tag "Plik #{$theme}.css", :class => 'first'
+    p = text_area_tag :css_content, :value => @css, :style => "height: 400px; width: 80%;"
+
+    = submit_tag "Aktualizuj"
+

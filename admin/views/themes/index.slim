@@ -1,16 +1,58 @@
 ul class="nav nav-tabs"
-  li class="active" = link_to tag_icon(:list, pat("Aktualny")), url(:themes, :index)
-  li = link_to tag_icon(:edit, pat("Edytuj mood")), url(:themes, :edit)
+  li class="active" = link_to tag_icon(:list, pat(:list)), url(:themes, :index)
   li = link_to tag_icon(:plus, pat(:new)), url(:themes, :new)
-  
-div class="tabs-content"
-  h1 = "Aktualny mood: #{$theme}"
-    
 
+h1 = "Aktualny temat: #{Theme.name}"
+p = "Czat title: #{Theme.chat_title}"
+ 
 = form_tag 'themes/change_theme' do
   = field_set_tag do
     p
       = label_tag 'Zmień mood promoplatformy', :class => 'first'
-    p = select_tag :theme, :options => ["default", "mario", "test", "aiesec"]
+    p = select_tag :theme, :options => Theme.list
     = submit_tag "Zmień mood"
 
+
+div class="tabs-content"
+  table class="table table-striped table-hover table-condensed" id="list"
+    thead
+      tr
+        th class='header list-menu'
+            
+        th class='header' = mat(:theme, :id)
+        th class='header' = mat(:theme, :name)
+        th class='header' = mat(:theme, :welcome_heading)
+        th class='header' = mat(:theme, :welcome_message)
+        th class='header' = mat(:theme, :activity_confirmed)
+        th class='header' = mat(:theme, :chat_title)
+        th class='header' = mat(:theme, :send_message_button)
+        th class='header' = mat(:theme, :action_confirmed)
+        th class='header' = mat(:theme, :created_at)
+        th class='header' = mat(:theme, :updated_at)
+        th class='header list-row-action-header'
+
+    tbody
+      -@themes.each do |theme|
+        tr class='list-row'
+          td class='list-column list-selectable' = check_box_tag 'theme_ids[]', :value => theme.id, :class => 'list-selectable-checkbox'
+          td class='list-column' = theme.id
+          td class='list-column' = theme.name
+          td class='list-column' = theme.welcome_heading
+          td class='list-column' = theme.welcome_message
+          td class='list-column' = theme.activity_confirmed
+          td class='list-column' = theme.chat_title
+          td class='list-column' = theme.send_message_button
+          td class='list-column' = theme.action_confirmed
+          td class='list-column' = time_ago_in_words theme.created_at
+          td class='list-column' = time_ago_in_words theme.updated_at
+          td class='list-column list-row-action'
+            div class='list-row-action-wrapper'
+              = link_to tag_icon(:edit), :href => url(:themes, :edit, :id => theme.id), :rel => :tooltip, :title => "#{pat(:edit)} theme", :class => 'list-row-action-wrapper-link'
+              = link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{pat(:delete)} theme", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              div class='popover list-row-action-popover-delete-one left'
+                div class='arrow'
+                h3 class='popover-title' = pat(:delete, :model => "theme")
+                div class='popover-content'
+                  = form_tag url(:themes, :destroy, :id => theme.id), :method => :delete do
+                    = submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
+                    div class='btn btn-default btn-small cancel' = pat(:cancel)

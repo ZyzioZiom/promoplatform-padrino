@@ -6,12 +6,16 @@
 #   shell.say name
 #
 
-level = Level.create(name: "Clint Eastwood", description: "If you want a guarantee, buy a toaster", image: "http://expositio.wpshower.com/wp-content/uploads/2014/03/martin-schoeller-clint-eastwood-portrait-up-close-and-personal.jpg", points: 0, created_at: Time.now, updated_at: Time.now)
+Level.create(name: "Clint Eastwood", description: "If you want a guarantee, buy a toaster", image: "http://expositio.wpshower.com/wp-content/uploads/2014/03/martin-schoeller-clint-eastwood-portrait-up-close-and-personal.jpg", points: 0, created_at: Time.now, updated_at: Time.now)
 
-shell.say "Created first level"
+shell.say "Utworzono pierwszy poziom"
 
-email     = shell.ask "Which email do you want use for logging into admin?"
-password  = shell.ask "Tell me the password to use:"
+Theme.create(name: "default", welcome_heading: "Witaj na Promoplatformie Kraków", welcome_message: "", activity_confirmed: "Aktywność potwierdzona, a punkty przyznane", chat_title: "Czat", send_message_button: "Wyślij wiadomość", action_confirmed: "Aktywność potwierdzona")
+
+shell.say "Domyślny wygląd wygenerowany"
+
+email     = shell.ask "Podaj e-mail, którego chcesz użyć do logowania do panelu admina:"
+password  = shell.ask "Podaj hasło do panelu admina:"
 
 shell.say ""
 
@@ -19,13 +23,13 @@ user = User.create(:email => email, :firstname => "Pan", :lastname => "Admin", :
 
 if user.valid?
   shell.say "================================================================="
-  shell.say "User has been successfully created, now you can login with:"
+  shell.say " Administrator utworzony pomyślnie."
   shell.say "================================================================="
   shell.say "   email: #{email}"
-  shell.say "   password: #{password}"
+  shell.say "   hasło: #{password}"
   shell.say "================================================================="
 else
-  shell.say "Sorry but some thing went wrong!"
+  shell.say "Coś poszło źle!"
   shell.say ""
   user.errors.full_messages.each { |m| shell.say "   - #{m}" }
 end

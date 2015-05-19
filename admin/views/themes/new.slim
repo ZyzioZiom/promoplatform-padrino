@@ -1,4 +1,7 @@
 ul class="nav nav-tabs"
-  li = link_to tag_icon(:list, pat("Aktualny")), url(:themes, :index)
-  li = link_to tag_icon(:edit, pat(:edit)), url(:themes, :edit)
+  li = link_to tag_icon(:list, pat(:list)), url(:themes, :index)
   li class="active" = link_to tag_icon(:plus, pat(:new)), url(:themes, :new)
+
+div class="tabs-content"
+  = form_for :theme, url(:themes, :create), :class => 'form-horizontal' do |f|
+    = partial 'themes/form', :locals => { :f => f }
