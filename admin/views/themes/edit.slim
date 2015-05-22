@@ -3,6 +3,8 @@ ul class="nav nav-tabs"
   li = link_to tag_icon(:plus, pat(:new)), url(:themes, :new)
   li class="active" = link_to tag_icon(:edit, pat(:edit)), url(:themes, :edit, :id => @theme.id)
 
+p Nie zmieniaj nazwy już stworzonego mooda - nie chciało mi się tego dokończyć i się psuje
+
 div class="tabs-content"
   = form_for :theme, url(:themes, :update, :id => @theme.id), :method => :put, :class => 'form-horizontal' do |f|
     = partial 'themes/form', :locals => { :f => f }

@@ -1,1 +1,1 @@
-$theme = 'test'
+$theme = 'default'

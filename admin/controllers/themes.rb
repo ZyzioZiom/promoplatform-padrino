@@ -4,6 +4,7 @@ PromoplatformPadrino::Admin.controllers :themes do
     @themes = Theme.all
     
     @theme_variables = Theme.variables
+    @theme_list = Theme.list
     
     render 'themes/index'
   end
@@ -40,10 +41,11 @@ PromoplatformPadrino::Admin.controllers :themes do
   end
 
   get :edit, :with => :id do
-    @title = pat(:edit_title, :model => "theme #{params[:id]}")
+    @theme_variables = Theme.variables
+    @title = pat("Edytuj mood")
     @theme = Theme.find(params[:id])
     if @theme.name == "default"
-      flash[:error] = "Nie możesz edytować domyślnego mooda. Skopiuj go i pracuj na kopii"
+      flash[:error] = "Nie możesz edytować domyślnego mooda. Utwórz nowy"
       redirect back
     end
   

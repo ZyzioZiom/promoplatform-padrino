@@ -63,3 +63,7 @@
   padding: 20px;
   width: 600px;
 }
+
+.logout_button {
+  text-align: center;
+}

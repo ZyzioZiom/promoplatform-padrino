@@ -19,7 +19,7 @@ password  = shell.ask "Podaj hasło do panelu admina:"
 
 shell.say ""
 
-user = User.create(:email => email, :firstname => "Pan", :lastname => "Admin", :password => password, :password_confirmation => password, :role => "admin")
+user = User.create(:email => email, :firstname => "Pan", :lastname => "Administrator", :password => password, :password_confirmation => password, :role => "admin")
 
 if user.valid?
   shell.say "================================================================="
@@ -28,6 +28,8 @@ if user.valid?
   shell.say "   email: #{email}"
   shell.say "   hasło: #{password}"
   shell.say "================================================================="
+  shell.say " PROMOPLATFORMA GOTOWA"
+
 else
   shell.say "Coś poszło źle!"
   shell.say ""

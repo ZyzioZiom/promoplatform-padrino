@@ -22,8 +22,8 @@ class Theme < ActiveRecord::Base
   end
   
   def self.delete(name)
-    FileUtils.remove_dir "public/images/#{name}"
-    FileUtils.remove_dir "public/stylesheets/#{name}.css"
+    FileUtils.rm_r "public/images/#{name}"
+    FileUtils.rm_r "public/stylesheets/#{name}.css"
   rescue => e
     @@logger.fatal "Error deleting theme: #{e.class} - #{e.message}"
   end
