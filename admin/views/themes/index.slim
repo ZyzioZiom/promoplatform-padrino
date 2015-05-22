@@ -2,7 +2,7 @@ ul class="nav nav-tabs"
   li class="active" = link_to tag_icon(:list, pat(:list)), url(:themes, :index)
   li = link_to tag_icon(:plus, pat(:new)), url(:themes, :new)
 
-h1 = "Aktualny mood: #{Theme.name}"
+h1 = "Aktualny mood: #{@theme_variables.name}"
  
 = form_tag 'themes/change_theme' do
   = field_set_tag do

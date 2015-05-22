@@ -2,12 +2,17 @@ PromoplatformPadrino::Admin.controllers :themes do
   get :index do
     @title = "Themes"
     @themes = Theme.all
+    
+    @theme_variables = Theme.variables
+    
     render 'themes/index'
   end
 
   get :new do
     @title = pat(:new_title, :model => 'theme')
     @theme = Theme.new
+    
+    @theme_variables = Theme.variables
     render 'themes/new'
   end
 

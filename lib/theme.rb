@@ -1,1 +1,1 @@
-$theme = 'jazda bardzo'
+$theme = 'test'

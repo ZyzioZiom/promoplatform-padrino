@@ -10,7 +10,7 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label "Nagłówek powitania", :class => 'control-label'
   div class='controls'
-    = f.text_field :welcome_heading, :class => 'form-control input-large input-with-feedback', :value => Theme.welcome_heading
+    = f.text_field :welcome_heading, :class => 'form-control input-large input-with-feedback', :value => @theme_variables.welcome_heading
     span class='help-inline' = error ? f.error_message_on(:welcome_heading, :class => 'text-error') : nil
     
     
@@ -18,7 +18,7 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label "Treść wiadomości powitalnej", :class => 'control-label'
   div class='controls'
-    = f.text_area :welcome_message, :class => 'form-control input-large input-with-feedback', :value => Theme.welcome_message
+    = f.text_area :welcome_message, :class => 'form-control input-large input-with-feedback', :value => @theme_variables.welcome_message
     span class='help-inline' = error ? f.error_message_on(:welcome_message, :class => 'text-error') : nil
     
     
@@ -26,7 +26,7 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label "Treść informacji o przyznanych punktach", :class => 'control-label'
   div class='controls'
-    = f.text_field :activity_confirmed, :class => 'form-control input-large input-with-feedback', :value => Theme.activity_confirmed
+    = f.text_field :activity_confirmed, :class => 'form-control input-large input-with-feedback', :value => @theme_variables.activity_confirmed
     span class='help-inline' = error ? f.error_message_on(:activity_confirmed, :class => 'text-error') : nil
     
     
@@ -34,7 +34,7 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label "Tytuł okienka czatu", :class => 'control-label'
   div class='controls'
-    = f.text_field :chat_title, :class => 'form-control input-large input-with-feedback', :value => Theme.chat_title
+    = f.text_field :chat_title, :class => 'form-control input-large input-with-feedback', :value => @theme_variables.chat_title
     span class='help-inline' = error ? f.error_message_on(:chat_title, :class => 'text-error') : nil
     
     
@@ -42,7 +42,7 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label "Napis na przycisku wysłania wiadomości czatu", :class => 'control-label'
   div class='controls'
-    = f.text_field :send_message_button, :class => 'form-control input-large input-with-feedback', :value => Theme.send_message_button
+    = f.text_field :send_message_button, :class => 'form-control input-large input-with-feedback', :value => @theme_variables.send_message_button
     span class='help-inline' = error ? f.error_message_on(:send_message_button, :class => 'text-error') : nil
     
     
@@ -50,7 +50,7 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label "Treść komunikatu potwierdzenia aktywności", :class => 'control-label'
   div class='controls'
-    = f.text_field :action_confirmed, :class => 'form-control input-large input-with-feedback', :value => Theme.action_confirmed
+    = f.text_field :action_confirmed, :class => 'form-control input-large input-with-feedback', :value => @theme_variables.action_confirmed
     span class='help-inline' = error ? f.error_message_on(:action_confirmed, :class => 'text-error') : nil
 
 

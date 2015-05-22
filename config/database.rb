@@ -14,11 +14,8 @@
    }
 #
 ActiveRecord::Base.configurations[:development] = {
-  :adapter  => 'postgresql',
-  :database => 'promoplatform',
-  :username => 'promo',
-  :password => 'promo',
-  :host     => 'localhost'
+   :adapter => 'sqlite3',
+  :database => Padrino.root('db', 'promoplatform_padrino_dev.db')
 
 }
 
