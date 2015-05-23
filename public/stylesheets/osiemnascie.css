@@ -5,20 +5,16 @@
   padding:0;
   margin:0;
   font-family:Open Sans, Helvetica, Arial, sans-serif;
-  background: url(../images/default/login-background.jpg) no-repeat center center;  /* tło okna powitalnego */
+  background: url(../images/osiemnascie/login-background.jpg) no-repeat bottom center;  /* tło okna powitalnego */
   background-size: cover; 
   background-attachment: fixed;
 }
 
-/* przycisk Zaloguj */
+/* umiejscowienie przycisku Zaloguj */
 .login-button {
-  width: 350px;
-  height: 50px;
-  background: url(../images/default/login-button.png) no-repeat center center;
-/*  background-image: url(../images/default/login-button.png)*/
-  background-size: contain;
   position: absolute;
-  top: 30%;
+  bottom: 300px;
+  left: 40%;
 }
 
 /* główne okno promoplatformy */
@@ -28,7 +24,7 @@
   padding:0;
   margin:0;
   font-family:Open Sans, Helvetica, Arial, sans-serif;
-  background: url(../images/default/home-background.jpg) no-repeat center center;  /* tło */
+  background: url(../images/osiemnascie/home-background.jpg) no-repeat bottom center;  /* tło */
   background-size: cover;
   background-attachment: fixed;
 }

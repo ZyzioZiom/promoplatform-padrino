@@ -56,7 +56,7 @@ PromoplatformPadrino::Admin.controllers :themes do
       current_theme.each do |line|
         @css << line
     end
-  
+      
       render 'themes/edit'
     else
       flash[:warning] = pat(:create_error, :model => 'theme', :id => "#{params[:id]}")
@@ -97,6 +97,9 @@ PromoplatformPadrino::Admin.controllers :themes do
     
     if theme.name == "default"
       flash[:error] = "Nie możesz usunąć domyślnego mooda"
+      redirect back
+    elsif theme.name == Theme.variables.name
+      flash[:error] = "Nie możesz usunąć aktywnego mooda"
       redirect back
     end
     

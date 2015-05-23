@@ -19,6 +19,15 @@ class Theme < ActiveRecord::Base
   def self.rename(old_name, new_name)
     FileUtils.mv "public/images/#{old_name}", "public/images/#{new_name}"
     FileUtils.mv "public/stylesheets/#{old_name}.css", "public/stylesheets/#{new_name}.css"
+    
+    
+    css = File.read("public/stylesheets/#{new_name}.css")
+    
+    css.gsub!("background: url\(\.\.\/images\/#{old_name}","background: url(../images/#{new_name}")
+
+    File.open "public/stylesheets/#{new_name}.css", "w" do |f|
+      f.write(css)
+    end
   end
   
   def self.delete(name)

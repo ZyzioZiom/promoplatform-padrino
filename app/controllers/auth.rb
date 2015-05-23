@@ -36,7 +36,7 @@ PromoplatformPadrino::App.controllers :auth do
       session[:current_user] = @user
       current_user = session[:current_user]
       
-      flash[:success] = "Witaj ponownie, #{current_user.firstname}! Świetnie dziś wyglądasz #{9786.chr} "
+      flash[:success] = "Witaj ponownie, #{current_user.firstname}! Świetnie dziś wyglądasz!"
       
       redirect_to 'home'
     end

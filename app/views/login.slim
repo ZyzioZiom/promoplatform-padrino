@@ -1,3 +1,2 @@
 -# redirect login to google auth
-.login-button
-  = link_to(image_tag("/images/#{$theme}/zaloguj.png"), url("/auth/google_oauth2"))
+= link_to(nil, url("/auth/google_oauth2"), :class => "login-button")

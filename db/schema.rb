@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 15) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "actions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "activity_id"
@@ -75,6 +72,8 @@ ActiveRecord::Schema.define(version: 15) do
     t.string   "action_confirmed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_welcome"
+    t.string   "next_welcome"
   end
 
   create_table "users", force: :cascade do |t|
