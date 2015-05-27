@@ -14,16 +14,25 @@
    }
 #
 ActiveRecord::Base.configurations[:development] = {
-   :adapter => 'sqlite3',
-  :database => Padrino.root('db', 'promoplatform_padrino_dev.db')
+     :adapter   => 'postgresql',
+     :encoding  => 'utf8',
+     :reconnect => true,
+     :database  => 'promoplatform',
+     :username  => 'postgres',
+     :password  => 'postgres',
+     :host      => 'localhost'
 
 }
 
 
 ActiveRecord::Base.configurations[:test] = {
-  :adapter => 'sqlite3',
-  :database => Padrino.root('db', 'promoplatform_padrino_test.db')
-
+     :adapter   => 'postgresql',
+     :encoding  => 'utf8',
+     :reconnect => true,
+     :database  => 'promoplatform',
+     :username  => 'postgres',
+     :password  => 'postgres',
+     :host      => 'localhost'
 }
 
 # Setup our logger
