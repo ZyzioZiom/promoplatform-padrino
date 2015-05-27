@@ -2,6 +2,20 @@ ul class="nav nav-tabs"
   li = link_to tag_icon(:list, pat(:list)), url(:levels, :index)
   li class="active" = link_to tag_icon(:plus, pat(:new)), url(:levels, :new)
 
+= form_tag :upload_level_image, :multipart => true do
+  = field_set_tag do
+  
+    p = label_tag "Wgraj nowy obrazek dla poziomu"
+    p = file_field_tag :level_image
+    
+    p= submit_tag "Wgraj obrazek"
+    
+    p= request.url
+    
 div class="tabs-content"
   = form_for :level, url(:levels, :create), :class => 'form-horizontal' do |f|
     = partial 'levels/form', :locals => { :f => f }
+
+-@images.each do |image|
+  -image.slice!("public")
+  img src = "http://#{request.host}:3000#{image}" style = "max-width:100px"

@@ -22,7 +22,7 @@ PromoplatformPadrino::Admin.controllers :themes do
     if @theme.save
       @title = pat(:create_title, :model => "theme #{@theme.id}")
       
-      Theme.create_images_directory(@theme.name)
+      Theme.create_theme_directory(@theme.name)
       
       Theme.create_images(@theme.name)
       
@@ -118,11 +118,63 @@ PromoplatformPadrino::Admin.controllers :themes do
   end
 
   post :update_css do
-    @content = params[:css_content]
+    content = params[:css_content]
     File.open "public/stylesheets/#{params[:theme]}.css", "w" do |f|
-      f.write(@content)
+      f.write(content)
     end
 
     redirect back
   end
+
+  post :upload_images do
+    theme_name = params[:theme_name]
+    login_background = params[:login_background]
+    home_background = params[:home_background]
+    login_button = params[:login_button]
+    
+    if login_background
+      unless login_background[:type].include? "image"
+        flash[:error] = "Możesz wysyłać tylko obrazki"
+        redirect back
+      end
+      
+      f = File.new "public/themes/#{theme_name}/login-background.jpg", "w+b"
+      f.write login_background[:tempfile].read
+      f.close
+    end
+    if login_background
+      unless login_background[:type].include? "image"
+        flash[:error] = "Możesz wysyłać tylko obrazki"
+        redirect back
+      end
+      
+      f = File.new "public/themes/#{theme_name}/login-background.jpg", "w+b"
+      f.write login_background[:tempfile].read
+      f.close
+    end
+    if home_background
+      unless home_background[:type].include? "image"
+        flash[:error] = "Możesz wysyłać tylko obrazki"
+        redirect back
+      end
+      
+      f = File.new "public/themes/#{theme_name}/home-background.jpg", "w+b"
+      f.write home_background[:tempfile].read
+      f.close
+    end
+    if login_button
+      unless login_button[:type].include? "image"
+        flash[:error] = "Możesz wysyłać tylko obrazki"
+        redirect back
+      end
+      
+      f = File.new "public/themes/#{theme_name}/login-button.png", "w+b"
+      f.write login_button[:tempfile].read
+      f.close
+    end
+    
+    flash[:success] = "Nowe obrazki zostały wgrane do mooda"
+    redirect back
+  end
+
 end

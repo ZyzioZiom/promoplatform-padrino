@@ -5,7 +5,7 @@
   padding:0;
   margin:0;
   font-family:Open Sans, Helvetica, Arial, sans-serif;
-  background: url(../themes/default/login-background.jpg) no-repeat center center;  /* tło okna powitalnego */
+  background: url(../themes/nowa-grafika/login-background.jpg) no-repeat center center;  /* tło okna powitalnego */
   background-size: cover; 
   background-attachment: fixed;
 }
@@ -14,7 +14,7 @@
 .login-button {
   width: 350px;
   height: 50px;
-  background: url(../themes/default/login-button.png) no-repeat center center;
+  background: url(../themes/nowa-grafika/login-button.png) no-repeat center center;
   background-size: contain;
   position: absolute;
   top: 30%;
@@ -27,7 +27,7 @@
   padding:0;
   margin:0;
   font-family:Open Sans, Helvetica, Arial, sans-serif;
-  background: url(../themes/default/home-background.jpg) no-repeat center center;  /* tło */
+  background: url(../themes/nowa-grafika/home-background.jpg) no-repeat center center;  /* tło */
   background-size: cover;
   background-attachment: fixed;
 }

@@ -2,17 +2,20 @@ PromoplatformPadrino::Admin.controllers :levels do
   get :index do
     @title = "Levels"
     @levels = Level.order(:points)
+    @images = Dir["public/levels/*"]
     render 'levels/index'
   end
 
   get :new do
     @title = pat(:new_title, :model => 'level')
     @level = Level.new
+    @images = Dir["public/levels/*"]
     render 'levels/new'
   end
 
   post :create do
     @level = Level.new(params[:level])
+    @images = Dir["public/levels/*"]
     if @level.save
       @title = pat(:create_title, :model => "level #{@level.id}")
       flash[:success] = pat(:create_success, :model => 'Level')
@@ -27,6 +30,7 @@ PromoplatformPadrino::Admin.controllers :levels do
   get :edit, :with => :id do
     @title = pat(:edit_title, :model => "level #{params[:id]}")
     @level = Level.find(params[:id])
+    @images = Dir["public/levels/*"]
     if @level
       render 'levels/edit'
     else
@@ -84,5 +88,26 @@ PromoplatformPadrino::Admin.controllers :levels do
       flash[:success] = pat(:destroy_many_success, :model => 'Levels', :ids => "#{ids.to_sentence}")
     end
     redirect url(:levels, :index)
+  end
+
+
+  post :upload_level_image do
+    level_image = params[:level_image]
+    
+    if level_image
+      unless level_image[:type].include? "image"
+        flash[:error] = "Możesz wysyłać tylko obrazki"
+        redirect back
+      end
+      
+      f = File.new "public/levels/#{level_image[:filename]}", "w+b"
+      f.write level_image[:tempfile].read
+      f.close
+    end
+    
+    
+    
+    flash[:success] = "Nowy obrazek został wgrany do platformy"
+    redirect back
   end
 end

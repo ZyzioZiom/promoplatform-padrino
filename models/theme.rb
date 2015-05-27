@@ -17,13 +17,13 @@ class Theme < ActiveRecord::Base
   end
     
   def self.rename(old_name, new_name)
-    FileUtils.mv "public/images/#{old_name}", "public/images/#{new_name}"
+    FileUtils.mv "public/themes/#{old_name}", "public/themes/#{new_name}"
     FileUtils.mv "public/stylesheets/#{old_name}.css", "public/stylesheets/#{new_name}.css"
     
     
     css = File.read("public/stylesheets/#{new_name}.css")
     
-    css.gsub!("background: url\(\.\.\/images\/#{old_name}","background: url(../images/#{new_name}")
+    css.gsub!("background: url\(\.\.\/themes\/#{old_name}","background: url(../themes/#{new_name}")
 
     File.open "public/stylesheets/#{new_name}.css", "w" do |f|
       f.write(css)
@@ -31,21 +31,22 @@ class Theme < ActiveRecord::Base
   end
   
   def self.delete(name)
-    FileUtils.rm_r "public/images/#{name}"
+    FileUtils.rm_r "public/themes/#{name}"
     FileUtils.rm_r "public/stylesheets/#{name}.css"
   rescue => e
     @@logger.fatal "Error deleting theme: #{e.class} - #{e.message}"
   end
   
-  def self.create_images_directory(theme_name)
-    unless Dir.exist?("public/images/#{theme_name}")
-      Dir.mkdir("public/images/#{theme_name}")
+  def self.create_theme_directory(theme_name)
+    unless Dir.exist?("public/themes/#{theme_name}")
+      Dir.mkdir("public/themes/#{theme_name}")
     end
   end
   
   def self.create_images(theme_name)
-    FileUtils.cp "public/images/default/login-background.jpg", "public/images/#{theme_name}/login-background.jpg"
-    FileUtils.cp "public/images/default/home-background.jpg", "public/images/#{theme_name}/home-background.jpg"
+    FileUtils.cp "public/themes/default/login-background.jpg", "public/themes/#{theme_name}/login-background.jpg"
+    FileUtils.cp "public/themes/default/home-background.jpg", "public/themes/#{theme_name}/home-background.jpg"
+    FileUtils.cp "public/themes/default/login-button.png", "public/themes/#{theme_name}/login-button.png"
   end
   
   def self.create_css(theme_name)

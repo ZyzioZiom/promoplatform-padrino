@@ -29,8 +29,15 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :image, :class => 'control-label'
   div class='controls'
-    = f.url_field :image, :class => 'form-control input-large input-with-feedback'
-    span class='help-inline' = error ? f.error_message_on(:image, :class => 'text-error') : pat("Link do obrazka reprezentującego poziom")
+    table
+      tr
+        -@images.each do |image|
+          td style="border:2px solid black"
+            -image.slice!("public")
+            = f.radio_button :image, :value => "http://#{request.host}:3000#{image}"
+            p
+            img src = "http://#{request.host}:3000#{image}" style = "max-width:100px"
+
 
 div class="form-actions"
   = f.submit pat(:save), :class => 'btn btn-primary'
