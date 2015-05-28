@@ -17,6 +17,8 @@ class Theme < ActiveRecord::Base
   end
     
   def self.rename(old_name, new_name)
+    new_name = Utility.sanitize(new_name)
+    
     FileUtils.mv "public/themes/#{old_name}", "public/themes/#{new_name}"
     FileUtils.mv "public/stylesheets/#{old_name}.css", "public/stylesheets/#{new_name}.css"
     
@@ -60,5 +62,29 @@ class Theme < ActiveRecord::Base
     File.open new_css, "w" do |f|
       f.write(css)
     end
+  end
+  
+  def self.update_images(args)
+    theme_name = args[:theme_name]
+    login_background = args[:login_background]
+    home_background = args[:home_background]
+    login_button = args[:login_button]
+    
+    [
+      [login_background, "login-background.jpg"],
+      [home_background, "home-background.jpg"],
+      [login_button, "login-button.png"]
+    ].each do |file|
+      if file[0]
+        unless file[0][:type].include? "image"
+          return { :error => "Możesz wysyłać tylko obrazki" }
+        end
+        
+        f = File.new "public/themes/#{theme_name}/#{file[1]}", "w+b"
+        f.write file[0][:tempfile].read
+        f.close
+      end
+    end
+    { :success => "Nowe obrazki zostały wgrane od mooda" }
   end
 end

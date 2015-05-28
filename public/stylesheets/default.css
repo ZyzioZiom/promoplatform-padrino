@@ -30,6 +30,7 @@
   background: url(../themes/default/home-background.jpg) no-repeat center center;  /* tło */
   background-size: cover;
   background-attachment: fixed;
+  /* color: white; */  /* możesz zmienić kolor tekstu */
 }
 
 /* kolumna po lewej stronie */

@@ -26,7 +26,15 @@ module PromoplatformPadrino
 
     enable  :sessions
     disable :store_location
-
+    
+    use OmniAuth::Builder do
+      provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
+      {
+        :image_size => 200 # increase image size to 200px
+      }
+    end
+    
+    
     access_control.roles_for :any do |role|
       role.protect '/'
       role.allow   '/sessions'

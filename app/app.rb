@@ -15,10 +15,7 @@ module PromoplatformPadrino
     end
     
     
-  def current_user
-    @_current_user ||= session[:current_user].id &&
-      User.find_by(id: session[:current_user].id)
-  end
+  
     ##
     # Caching support.
     #
@@ -84,6 +81,13 @@ module PromoplatformPadrino
         end
       end
     end
+    
+    
+    def current_user
+    @_current_user ||= session[:current_user].id &&
+      User.find_by(id: session[:current_user].id)
+    end
+    
     
     get :index do
       if session[:current_user]

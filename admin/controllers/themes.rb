@@ -19,8 +19,15 @@ PromoplatformPadrino::Admin.controllers :themes do
 
   post :create do
     @theme = Theme.new(params[:theme])
+    # get rid of special characters
+    @theme.name = Utility.sanitize(@theme.name)
+    
+    @theme_variables = Theme.variables
+    
     if @theme.save
       @title = pat(:create_title, :model => "theme #{@theme.id}")
+      
+      @theme.name = Utility.sanitize(@theme.name)
       
       Theme.create_theme_directory(@theme.name)
       
@@ -47,6 +54,9 @@ PromoplatformPadrino::Admin.controllers :themes do
     if @theme.name == "default"
       flash[:error] = "Nie możesz edytować domyślnego mooda. Utwórz nowy"
       redirect back
+    elsif @theme.name == Theme.variables.name
+      flash[:error] = "Nie możesz edytować aktywnego mooda"
+      redirect back
     end
   
     if @theme
@@ -68,12 +78,14 @@ PromoplatformPadrino::Admin.controllers :themes do
     @title = pat(:update_title, :model => "theme #{params[:id]}")
     @theme = Theme.find(params[:id])
     if @theme
-      @name = @theme.name
+      @old_name = @theme.name
+      
+      params[:theme][:name] = Utility.sanitize(params[:theme][:name])
       
       if @theme.update_attributes(params[:theme])
         
-        if @name != @theme.name
-          Theme.rename(@name, @theme.name)
+        if @old_name != @theme.name
+          Theme.rename(@old_name, @theme.name)
           flash[:notice] = "Zmieniono nazwę mooda"
         end
         
@@ -127,54 +139,16 @@ PromoplatformPadrino::Admin.controllers :themes do
   end
 
   post :upload_images do
-    theme_name = params[:theme_name]
-    login_background = params[:login_background]
-    home_background = params[:home_background]
-    login_button = params[:login_button]
+     
+    status = Theme.update_images(params)
     
-    if login_background
-      unless login_background[:type].include? "image"
-        flash[:error] = "Możesz wysyłać tylko obrazki"
-        redirect back
-      end
-      
-      f = File.new "public/themes/#{theme_name}/login-background.jpg", "w+b"
-      f.write login_background[:tempfile].read
-      f.close
+    if status[:error]
+      flash[:error] = status[:error]
+      redirect back
+    elsif status[:success]
+      flash[:success] = status[:success]
+      redirect back
     end
-    if login_background
-      unless login_background[:type].include? "image"
-        flash[:error] = "Możesz wysyłać tylko obrazki"
-        redirect back
-      end
-      
-      f = File.new "public/themes/#{theme_name}/login-background.jpg", "w+b"
-      f.write login_background[:tempfile].read
-      f.close
-    end
-    if home_background
-      unless home_background[:type].include? "image"
-        flash[:error] = "Możesz wysyłać tylko obrazki"
-        redirect back
-      end
-      
-      f = File.new "public/themes/#{theme_name}/home-background.jpg", "w+b"
-      f.write home_background[:tempfile].read
-      f.close
-    end
-    if login_button
-      unless login_button[:type].include? "image"
-        flash[:error] = "Możesz wysyłać tylko obrazki"
-        redirect back
-      end
-      
-      f = File.new "public/themes/#{theme_name}/login-button.png", "w+b"
-      f.write login_button[:tempfile].read
-      f.close
-    end
-    
-    flash[:success] = "Nowe obrazki zostały wgrane do mooda"
-    redirect back
   end
 
 end

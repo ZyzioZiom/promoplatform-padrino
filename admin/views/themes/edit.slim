@@ -11,18 +11,23 @@ div class="tabs-content"
 = form_tag '../upload_images', :multipart => true do
   = field_set_tag do
   
-    p = label_tag "Tło ekranu logowania"
+    h4 Tutaj możesz zmienić obrazki:
+    
+    p = label_tag "Tło ekranu logowania (1920x1080px)"
+    img src = "/themes/#{@theme.name}/login-background.jpg" style="width:600px;"
     p = file_field_tag :login_background
     
-    p = label_tag "Tło ekranu głównego"
+    p = label_tag "Tło ekranu głównego (1920x1080px)"
+    img src = "/themes/#{@theme.name}/home-background.jpg" style="width:600px;"
     p = file_field_tag :home_background
     
-    p = label_tag "Przycisk ZALOGUJ"
+    p = label_tag "Przycisk ZALOGUJ (350x50px)"
+    img src = "/themes/#{@theme.name}/login-button.png" style="width:500px;"
     p = file_field_tag :login_button
     
     p = hidden_field_tag :theme_name, :value => @theme.name
     
-    p = submit_tag "Wgraj nowe obrazki"
+    p = submit_tag "Wyślij nowe obrazki"
     
 hr  
     
