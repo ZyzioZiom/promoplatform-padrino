@@ -8,12 +8,16 @@ table
       p= "#{@sum_points} punktów"
       
 h2 Aktywności:
+table
+  -@actions.each do |action|
+    -activity = Activity.find(action.activity_id)
+    tr style = "border-bottom: 1px dashed black"
+      td style = "border-right: 1px dashed black; padding:5px;"
+        = link_to activity.name, url_for(:activities, :index, :id => activity)
 
--@actions.each do |action|
-  -activity = Activity.find(action.activity_id)
-  p=
-  = link_to activity.name, url_for(:activities, :index, :id => activity)
-  ' 
-  -if action.confirmed
-    = "#{action.points} punktów | "
-    = link_to "Potwierdzenie", url_for(action.confirmation), :target => "_blank"
+      -if action.confirmed
+        td style = "border-right: 1px dashed black; padding:5px;"
+          = "#{action.points} punktów"
+        td style = "padding:5px;"
+          = link_to "Potwierdzenie", url_for(action.confirmation), :target => "_blank"
+        
