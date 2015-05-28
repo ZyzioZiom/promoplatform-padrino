@@ -11,4 +11,8 @@ class Activity < ActiveRecord::Base
   def self.current(activity_id, user_id)
 
   end
+  
+  def self.import_csv(data)
+    CSV.parse(data, headers: true, encoding: 'UTF-8')
+  end
 end

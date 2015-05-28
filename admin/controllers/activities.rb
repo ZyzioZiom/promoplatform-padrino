@@ -1,3 +1,5 @@
+require 'csv'
+
 PromoplatformPadrino::Admin.controllers :activities do
   get :index do
     @title = "Activities"
@@ -90,5 +92,11 @@ PromoplatformPadrino::Admin.controllers :activities do
   get :import do
     @title = "Import activities"
     render 'activities/import'
+  end
+
+  post :import do
+    @test = Activity.import_csv(params[:csv][:tempfile].read)
+    
+    render 'activities/imported'
   end
 end
