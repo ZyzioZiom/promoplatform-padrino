@@ -8,3 +8,4 @@ db/*.db
 .*.sw*
 public/themes/*
 public/levels/*
+config/*
