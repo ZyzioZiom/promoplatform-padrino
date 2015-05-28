@@ -1,7 +1,9 @@
 class Ranking
   
   def self.display
+    actions = Action.sum_confirmed
     
+    ranking = actions.sort_by { |k, v| v }.reverse
   end
   
   def self.current_level(current_user)
@@ -27,7 +29,7 @@ class Ranking
     
     { :name => current_level.name, 
       :description => current_level.description,
-      :points => current_level.points,
+      :sum_points => sum_points,
       :image => current_level.image,
       :percent => percent
       }

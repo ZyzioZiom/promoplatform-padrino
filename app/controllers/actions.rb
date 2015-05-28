@@ -1,9 +1,8 @@
 PromoplatformPadrino::App.controllers :actions do
   
   get :index do
-    @actions = Action.sum_confirmed
     
-    @ranking = @actions.sort_by { |k,v| v }.reverse
+    @ranking = Ranking.display
     
     
     render 'actions/index'
@@ -34,6 +33,8 @@ PromoplatformPadrino::App.controllers :actions do
   end
   
   post :update do
+    @theme_variables = Theme.variables
+    
     activity_id = params[:action][:activity_id].to_i
     
     @action = Action.current(activity_id, current_user)
@@ -42,7 +43,7 @@ PromoplatformPadrino::App.controllers :actions do
     @action.confirmation = params[:action][:confirmation]
     
     if @action.save
-      flash[:success] = "#{$action_confirmed} #{10004.chr}"
+      flash[:success] = "#{@theme_variables.action_confirmed} #{10004.chr}"
       redirect back
     end
   end

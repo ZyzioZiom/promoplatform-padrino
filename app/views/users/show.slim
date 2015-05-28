@@ -15,4 +15,5 @@ h2 Aktywności:
   = link_to activity.name, url_for(:activities, :index, :id => activity)
   ' 
   -if action.confirmed
-    = "#{action.points} punktów"
+    = "#{action.points} punktów | "
+    = link_to "Potwierdzenie", url_for(action.confirmation), :target => "_blank"

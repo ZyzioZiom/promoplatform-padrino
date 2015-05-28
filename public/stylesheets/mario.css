@@ -5,19 +5,19 @@
   padding:0;
   margin:0;
   font-family:Open Sans, Helvetica, Arial, sans-serif;
-  background: url(../themes/a-c-b346RFGD---------fdvf-b-bfgbnf--dfv/login-background.jpg) no-repeat center center;  /* tło okna powitalnego */
+  background: url(../themes/mario/login-background.jpg) no-repeat center center;  /* tło okna powitalnego */
   background-size: cover; 
   background-attachment: fixed;
 }
 
 /* przycisk Zaloguj */
 .login-button {
-  width: 350px;
-  height: 50px;
-  background: url(../themes/a-c-b346RFGD---------fdvf-b-bfgbnf--dfv/login-button.png) no-repeat center center;
+  width: 100px;
+  height:200px;
+  background: url(../themes/mario/login-button.png) no-repeat bottom center;
   background-size: contain;
   position: absolute;
-  top: 30%;
+  bottom:0;
 }
 
 /* główne okno promoplatformy */
@@ -27,7 +27,7 @@
   padding:0;
   margin:0;
   font-family:Open Sans, Helvetica, Arial, sans-serif;
-  background: url(../themes/a-c-b346RFGD---------fdvf-b-bfgbnf--dfv/home-background.jpg) no-repeat center center;  /* tło */
+  background: url(../themes/mario/home-background.jpg) no-repeat center center;  /* tło */
   background-size: cover;
   background-attachment: fixed;
   /* color: white; */  /* możesz zmienić kolor tekstu */

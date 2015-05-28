@@ -9,7 +9,7 @@ PromoplatformPadrino::App.controllers :users do
   get :index, :with => :id do
     @user = User.find(params[:id])
     
-    @actions = Action.where(user_id: params[:id])
+    @actions = Action.where(user_id: params[:id]).order(created_at: :desc)
     
     @sum_points = Action.sum_points(params[:id])
       

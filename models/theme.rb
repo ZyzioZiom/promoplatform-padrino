@@ -7,6 +7,7 @@ class Theme < ActiveRecord::Base
     Theme.where(name: $theme).take
   end
   
+  
   def self.list
     themes = []
     Theme.all.each do |theme|

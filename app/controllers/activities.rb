@@ -7,7 +7,6 @@ PromoplatformPadrino::App.controllers :activities do
   end
 
   get :index, :with => :id do
-    
     if params[:id].to_i.to_s == params[:id] # if id is integer
       
       @activity = Activity.find(params[:id])
