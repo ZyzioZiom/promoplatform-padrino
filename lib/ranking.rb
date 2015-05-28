@@ -27,11 +27,11 @@ class Ranking
     end
     
     
-    { :name => current_level.name, 
-      :description => current_level.description,
-      :sum_points => sum_points,
-      :image => current_level.image,
-      :percent => percent
+    { name: current_level.name, 
+      description: current_level.description,
+      sum_points: sum_points,
+      image: current_level.image,
+      percent: percent
       }
     
   end
