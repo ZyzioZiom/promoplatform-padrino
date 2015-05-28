@@ -29,14 +29,11 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :image, :class => 'control-label'
   div class='controls'
-    table
-      tr
-        -@images.each do |image|
-          td style="border:2px solid black"
-            -image.slice!("public")
-            = f.radio_button :image, :value => "http://#{request.host}:3000#{image}"
-            p
-            img src = "http://#{request.host}:3000#{image}" style = "max-width:100px"
+    -@images.each do |image|
+      div style="display: inline-block; padding: 5px;"
+        -image.slice!("public")
+        = f.radio_button :image, :value => "http://#{request.host}:3000#{image}"
+        img src = "http://#{request.host}:3000#{image}" style = "max-width:100px"
 
 
 div class="form-actions"
