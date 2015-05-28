@@ -1,37 +1,23 @@
 
 -#TODO: Remove logic from current_level view
 -# show current level of an user
--actions = Action.sum_points(current_user)
 
--levels = Level.order(:points)
-
--current_level = nil
--next_level = levels.first
-
--levels.each_with_index do |level,index|
-  -if actions >= level.points
-    
-    -current_level = level
-    -next_level = levels[index + 1]
+-ranking = Ranking.current_level(current_user)
 
 
-img style = "width: 100%; border-radius: 50%; margin-bottom: 20px;" src = current_level.image
+img style = "width: 100%; border-radius: 50%; margin-bottom: 20px;" src = ranking[:image]
 
 div style="text-align: center;"
-  p= current_level.name
+  p= ranking[:name]
 
-  -if current_level.description
-    p= current_level.description
+  -if ranking[:description]
+    p= ranking[:description]
 
-  p= "#{actions} punktów"
+  p= "#{ranking[:points]} punktów"
 
-  -if next_level.nil?
-    -percent = 100
-  -else
-    -percent = (actions.to_f - current_level.points) / next_level.points * 100
-    -percent = percent.floor
+  
 
 
   .progress
-    .progress-bar.progress-bar-success role="progressbar" aria-valuenow="#{percent}" aria-valuemin="0" aria-valuemax="100" style="width: #{percent}%;"
-      span class="sr-only" = "#{percent}%"
+    .progress-bar.progress-bar-success role="progressbar" aria-valuenow="#{ranking[:percent]}" aria-valuemin="0" aria-valuemax="100" style="width: #{ranking[:percent]}%;"
+      span class="sr-only" = "#{ranking[:percent]}%"
