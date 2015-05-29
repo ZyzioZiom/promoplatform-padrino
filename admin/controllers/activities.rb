@@ -103,16 +103,16 @@ PromoplatformPadrino::Admin.controllers :activities do
       flash[:error] = "Błąd importu: #{@data[:error].class} - #{@data[:error].message}"
     end
     
-    render 'activities/imported'
+    redirect back
   end
 
   get :download_empty_csv do
-    flash[:notice] = "to tylko test"
+    flash[:notice] = "Jeszcze nie gotowe"
     redirect back
   end
 
   get :download_example_csv do
-    flash[:notice] = "to tylko test"
+    flash[:notice] = "Jeszcze nie gotowe"
     redirect back
   end
 

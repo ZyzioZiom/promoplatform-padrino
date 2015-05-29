@@ -32,8 +32,8 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
     -@images.each do |image|
       div style="display: inline-block; padding: 5px;"
         -image.slice!("public")
-        = f.radio_button :image, :value => "http://#{request.host}:3000#{image}"
-        img src = "http://#{request.host}:3000#{image}" style = "max-width:100px"
+        = f.radio_button :image, :value => "http://#{request.env['HTTP_HOST']}#{image}"
+        img src = "http://#{request.env['HTTP_HOST']}#{image}" style = "max-width:100px"
 
 
 div class="form-actions"

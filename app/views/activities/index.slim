@@ -16,7 +16,7 @@ activity
             .day= activity.day
           -if activity.place  
           .place= activity.place
-          
+            
           -# display people signed up for this activity
           -signed_up = Action.signed(activity)
           -signed_up.each do |signed|
