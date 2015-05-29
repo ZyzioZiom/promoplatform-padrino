@@ -105,4 +105,15 @@ PromoplatformPadrino::Admin.controllers :activities do
     
     render 'activities/imported'
   end
+
+  get :download_empty_csv do
+    flash[:notice] = "to tylko test"
+    redirect back
+  end
+
+  get :download_example_csv do
+    flash[:notice] = "to tylko test"
+    redirect back
+  end
+
 end

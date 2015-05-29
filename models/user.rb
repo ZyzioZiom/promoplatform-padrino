@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  @@logger = Logger.new "log/user.log"
+  
   has_many :actions, dependent: :destroy
   has_many :messages, dependent: :destroy
   
@@ -50,6 +52,8 @@ class User < ActiveRecord::Base
     else
       "#{user.firstname} #{user.lastname}"
     end
+  rescue => e
+    logger.fatal "Error getting user full name: #{e.class} - #{e.message}"
   end
   
   

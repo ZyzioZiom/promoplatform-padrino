@@ -1,5 +1,5 @@
 class Activity < ActiveRecord::Base
-  @@logger = Logger.new("log/activity.log")
+  @@logger = Logger.new "log/activity.log"
   
   has_many :actions, dependent: :destroy
   
@@ -8,11 +8,10 @@ class Activity < ActiveRecord::Base
   validates :points, presence: true
   def self.category(category)
     Activity.where(category: category).order(:date, :hour).group_by(&:date)
+  rescue => e
+    logger.fatal "Error in category method: #{e.class} - #{e.message}"
   end
 
-  def self.current(activity_id, user_id)
-
-  end
   
   def self.import_csv(data)
     data.force_encoding "UTF-8"

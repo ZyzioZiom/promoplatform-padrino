@@ -1,5 +1,6 @@
 class Theme < ActiveRecord::Base
-  @@logger = Logger.new("log/theme.log")
+  @@logger = Logger.new "log/theme.log"
+  
   validates :name, uniqueness: true
   validates_presence_of :name, :welcome_heading, :activity_confirmed, :chat_title, :send_message_button, :action_confirmed
   
@@ -11,14 +12,20 @@ class Theme < ActiveRecord::Base
     end
     
     themes
+  rescue => e
+    logger.fatal "Error listing themes: #{e.class} - #{e.message}"
   end
   
   def self.current
     Theme.where(name: $theme).first
+  rescue => e
+    logger.fatal "Error getting current theme: #{e.class} - #{e.message}"
   end
   
   def variables
     Theme.where(name: name).first
+  rescue => e
+    logger.fatal "Error getting theme variables: #{e.class} - #{e.message}"
   end
   
   def rename_files(name, new_name)
@@ -33,7 +40,8 @@ class Theme < ActiveRecord::Base
     File.open "public/stylesheets/#{new_name}.css", "w" do |f|
       f.write(css)
     end
-    
+  rescue => e
+    logger.fatal "Error renaming theme files: #{e.class} - #{e.message}"
   end
   
   def delete(name)
@@ -41,25 +49,31 @@ class Theme < ActiveRecord::Base
     FileUtils.rm_r "public/stylesheets/#{name}.css"
     
   rescue => e
-    @@logger.fatal "Error deleting theme: #{e.class} - #{e.message}"
+    @@logger.fatal "Error deleting theme files: #{e.class} - #{e.message}"
   end
   
   def create(name)
     Theme.create_theme_directory(name)
     Theme.create_images(name)
     Theme.create_css(name)
+  rescue => e
+    logger.fatal "Error creating theme files: #{e.class} - #{e.message}"
   end
   
   def self.create_theme_directory(name)
     unless Dir.exist?("public/themes/#{name}")
       Dir.mkdir("public/themes/#{name}")
     end
+  rescue => e
+    logger.fatal "Error creating theme directory: #{e.class} - #{e.message}"
   end
   
   def self.create_images(name)
     FileUtils.cp "public/themes/default/login-background.jpg", "public/themes/#{name}/login-background.jpg"
     FileUtils.cp "public/themes/default/home-background.jpg", "public/themes/#{name}/home-background.jpg"
     FileUtils.cp "public/themes/default/login-button.png", "public/themes/#{name}/login-button.png"
+  rescue => e
+    logger.fatal "Error creating theme images: #{e.class} - #{e.message}"
   end
   
   def self.create_css(theme_name)
@@ -74,6 +88,8 @@ class Theme < ActiveRecord::Base
     File.open new_css, "w" do |f|
       f.write(css)
     end
+  rescue => e
+    logger.fatal "Error creating theme css: #{e.class} - #{e.message}"
   end
   
   def self.update_images(args)
@@ -98,5 +114,7 @@ class Theme < ActiveRecord::Base
       end
     end
     { :success => "Nowe obrazki zostały wgrane od mooda" }
+  rescue => e
+    logger.fatal "Error updating theme images: #{e.class} - #{e.message}"
   end
 end

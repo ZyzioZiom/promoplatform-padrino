@@ -1,4 +1,6 @@
 class Level < ActiveRecord::Base
+  @@logger = Logger.new "log/level.log"
+  
   validates :name, presence: true
   validates :points, presence: true, numericality: { only_integer: true }, uniqueness: true
   validates :image, presence: true, format: { with: URI.regexp }
@@ -24,6 +26,8 @@ class Level < ActiveRecord::Base
     end
     
     current_level
+  rescue => e
+    @@logger.fatal "Error getting current_level: #{e.class} - #{e.message}"
   end
   
   

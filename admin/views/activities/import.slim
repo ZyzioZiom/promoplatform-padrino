@@ -5,6 +5,14 @@ ul class="nav nav-tabs"
   
 hr
 
+h1 Importowanie aktywności
+
+p Aby zaoszczędzić czas, możesz zaimportować wiele aktywności naraz przy pomocy pliku CSV
+p Dozwolone wartości w polu category: leaflets, posters, stands, events, others
+
+p= link_to "Pobierz pusty plik CSV (do uzupełnienia aktywnościami)", :download_empty_csv
+p= link_to "Pobierz przykładowy plik CSV z aktywnościami", :download_example_csv
+
 = form_tag :import, :multipart => true do
   = field_set_tag do
   
