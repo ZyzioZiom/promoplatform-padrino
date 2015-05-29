@@ -33,7 +33,7 @@ PromoplatformPadrino::App.controllers :actions do
   end
   
   post :update do
-    @theme_variables = Theme.variables
+    @theme_variables = Theme.current
     
     activity_id = params[:action][:activity_id].to_i
     

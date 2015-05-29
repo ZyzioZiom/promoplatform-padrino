@@ -3,7 +3,9 @@ PromoplatformPadrino::Admin.controllers :themes do
     @title = "Themes"
     @themes = Theme.all
     
-    @theme_variables = Theme.variables
+    
+    @theme_variables = Theme.current
+    
     @theme_list = Theme.list
     
     render 'themes/index'
@@ -13,7 +15,8 @@ PromoplatformPadrino::Admin.controllers :themes do
     @title = pat(:new_title, :model => 'theme')
     @theme = Theme.new
     
-    @theme_variables = Theme.variables
+    @theme_variables = Theme.current
+    
     render 'themes/new'
   end
 
@@ -22,18 +25,14 @@ PromoplatformPadrino::Admin.controllers :themes do
     # get rid of special characters
     @theme.name = Utility.sanitize(@theme.name)
     
-    @theme_variables = Theme.variables
+    @theme_variables = Theme.current
     
     if @theme.save
       @title = pat(:create_title, :model => "theme #{@theme.id}")
       
       @theme.name = Utility.sanitize(@theme.name)
       
-      Theme.create_theme_directory(@theme.name)
-      
-      Theme.create_images(@theme.name)
-      
-      Theme.create_css(@theme.name)
+      @theme.create(@theme.name)
       
 
       flash[:success] = pat(:create_success, :model => 'Theme')
@@ -51,10 +50,11 @@ PromoplatformPadrino::Admin.controllers :themes do
     @title = pat("Edytuj mood")
     @theme = Theme.find(params[:id])
     @theme_variables = @theme
+    
     if @theme.name == "default"
       flash[:error] = "Nie możesz edytować domyślnego mooda. Utwórz nowy"
       redirect back
-    elsif @theme.name == Theme.variables.name
+    elsif @theme.name == Theme.current.name
       flash[:error] = "Nie możesz edytować aktywnego mooda"
       redirect back
     end
@@ -78,14 +78,17 @@ PromoplatformPadrino::Admin.controllers :themes do
     @title = pat(:update_title, :model => "theme #{params[:id]}")
     @theme = Theme.find(params[:id])
     if @theme
-      @old_name = @theme.name
+      # remember old theme name before modyfing object
+      old_name = @theme.name
       
       params[:theme][:name] = Utility.sanitize(params[:theme][:name])
       
       if @theme.update_attributes(params[:theme])
-        
-        if @old_name != @theme.name
-          Theme.rename(@old_name, @theme.name)
+        # if new name is different from old name
+        if old_name != @theme.name
+          
+          @theme.rename_files(old_name, @theme.name)
+          
           flash[:notice] = "Zmieniono nazwę mooda"
         end
         
@@ -110,7 +113,7 @@ PromoplatformPadrino::Admin.controllers :themes do
     if theme.name == "default"
       flash[:error] = "Nie możesz usunąć domyślnego mooda"
       redirect back
-    elsif theme.name == Theme.variables.name
+    elsif theme.name == Theme.current.name
       flash[:error] = "Nie możesz usunąć aktywnego mooda"
       redirect back
     end

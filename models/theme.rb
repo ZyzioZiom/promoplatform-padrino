@@ -2,10 +2,6 @@ class Theme < ActiveRecord::Base
   @@logger = Logger.new("log/theme.log")
   validates :name, uniqueness: true
   validates_presence_of :name, :welcome_heading, :activity_confirmed, :chat_title, :send_message_button, :action_confirmed
-
-  def self.variables
-    Theme.where(name: $theme).take
-  end
   
   
   def self.list
@@ -16,40 +12,54 @@ class Theme < ActiveRecord::Base
     
     themes
   end
-    
-  def self.rename(old_name, new_name)
+  
+  def self.current
+    Theme.where(name: $theme).first
+  end
+  
+  def variables
+    Theme.where(name: name).first
+  end
+  
+  def rename_files(name, new_name)
     new_name = Utility.sanitize(new_name)
     
-    FileUtils.mv "public/themes/#{old_name}", "public/themes/#{new_name}"
-    FileUtils.mv "public/stylesheets/#{old_name}.css", "public/stylesheets/#{new_name}.css"
-    
+    FileUtils.mv "public/themes/#{name}", "public/themes/#{new_name}"
+    FileUtils.mv "public/stylesheets/#{name}.css", "public/stylesheets/#{new_name}.css"
     
     css = File.read("public/stylesheets/#{new_name}.css")
-    
-    css.gsub!("background: url\(\.\.\/themes\/#{old_name}","background: url(../themes/#{new_name}")
+    css.gsub!("background: url\(\.\.\/themes\/#{name}","background: url(../themes/#{new_name}")
 
     File.open "public/stylesheets/#{new_name}.css", "w" do |f|
       f.write(css)
     end
+    
   end
   
-  def self.delete(name)
+  def delete(name)
     FileUtils.rm_r "public/themes/#{name}"
     FileUtils.rm_r "public/stylesheets/#{name}.css"
+    
   rescue => e
     @@logger.fatal "Error deleting theme: #{e.class} - #{e.message}"
   end
   
-  def self.create_theme_directory(theme_name)
-    unless Dir.exist?("public/themes/#{theme_name}")
-      Dir.mkdir("public/themes/#{theme_name}")
+  def create(name)
+    Theme.create_theme_directory(name)
+    Theme.create_images(name)
+    Theme.create_css(name)
+  end
+  
+  def self.create_theme_directory(name)
+    unless Dir.exist?("public/themes/#{name}")
+      Dir.mkdir("public/themes/#{name}")
     end
   end
   
-  def self.create_images(theme_name)
-    FileUtils.cp "public/themes/default/login-background.jpg", "public/themes/#{theme_name}/login-background.jpg"
-    FileUtils.cp "public/themes/default/home-background.jpg", "public/themes/#{theme_name}/home-background.jpg"
-    FileUtils.cp "public/themes/default/login-button.png", "public/themes/#{theme_name}/login-button.png"
+  def self.create_images(name)
+    FileUtils.cp "public/themes/default/login-background.jpg", "public/themes/#{name}/login-background.jpg"
+    FileUtils.cp "public/themes/default/home-background.jpg", "public/themes/#{name}/home-background.jpg"
+    FileUtils.cp "public/themes/default/login-button.png", "public/themes/#{name}/login-button.png"
   end
   
   def self.create_css(theme_name)
