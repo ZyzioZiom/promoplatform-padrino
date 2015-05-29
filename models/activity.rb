@@ -4,8 +4,9 @@ class Activity < ActiveRecord::Base
   has_many :actions, dependent: :destroy
   
   validates_inclusion_of :category, in: %w( leaflets stands posters others events )
-
-  validates :points, presence: true
+  validates :points, presence: true, numericality: { only_integer: true }
+  validates :date, presence: true
+  
   def self.category(category)
     Activity.where(category: category).order(:date, :hour).group_by(&:date)
   rescue => e

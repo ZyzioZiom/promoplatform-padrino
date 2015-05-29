@@ -23,8 +23,13 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
     = f.number_field :points, :class => 'form-control input-large input-with-feedback'
     span class='help-inline' = error ? f.error_message_on(:points, :class => 'text-error') : pat("Przy jakiej ilości punktów wskakuje poziom")
     
-    
-    
+p Aktualny obrazek:
+img src = @level.image style = "max-width: 300px; max-height: 200px;"
+
+hr
+
+h4 Wybierz nowy obrazek
+
 - error = @level.errors.include?(:image)
 fieldset class='control-group#{error ? ' has-error' : ''}'
   = f.label :image, :class => 'control-label'
@@ -33,7 +38,7 @@ fieldset class='control-group#{error ? ' has-error' : ''}'
       div style="display: inline-block; padding: 5px;"
         -image.slice!("public")
         = f.radio_button :image, :value => "http://#{request.env['HTTP_HOST']}#{image}"
-        img src = "http://#{request.env['HTTP_HOST']}#{image}" style = "max-width:100px"
+        img src = "http://#{request.env['HTTP_HOST']}#{image}" style = "max-width:100px; border-radius:50%;"
 
 
 div class="form-actions"

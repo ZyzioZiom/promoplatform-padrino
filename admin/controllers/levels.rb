@@ -103,6 +103,8 @@ PromoplatformPadrino::Admin.controllers :levels do
       f = File.new "public/levels/#{level_image[:filename]}", "w+b"
       f.write level_image[:tempfile].read
       f.close
+    
+    
     end
     
     
