@@ -95,7 +95,13 @@ PromoplatformPadrino::Admin.controllers :activities do
   end
 
   post :import do
-    @test = Activity.import_csv(params[:csv][:tempfile].read)
+    @data = Activity.import_csv(params[:csv][:tempfile].read)
+    
+    if @data[:result] == "success"
+      flash[:success] = "Import zakończony"
+    else
+      flash[:error] = "Błąd importu: #{@data[:error].class} - #{@data[:error].message}"
+    end
     
     render 'activities/imported'
   end

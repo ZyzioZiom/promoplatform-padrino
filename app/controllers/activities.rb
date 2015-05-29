@@ -12,7 +12,7 @@ PromoplatformPadrino::App.controllers :activities do
       @activity = Activity.find(params[:id])
       @signed = Action.where(activity_id: params[:id])
       
-      @current_user_signed = Action.current(params[:id], current_user)
+      @current_user_signed = Action.new.current(params[:id], current_user)
 
       unless @activity.nil?
         render 'activities/show'

@@ -37,12 +37,12 @@ PromoplatformPadrino::App.controllers :actions do
     
     activity_id = params[:action][:activity_id].to_i
     
-    @action = Action.current(activity_id, current_user)
+    action = Action.new.current(activity_id, current_user)
     
-    @action.confirmed = true
-    @action.confirmation = params[:action][:confirmation]
+    action.confirmed = true
+    action.confirmation = params[:action][:confirmation]
     
-    if @action.save
+    if action.save
       flash[:success] = "#{@theme_variables.action_confirmed} #{10004.chr}"
       redirect back
     end

@@ -67,7 +67,8 @@ class Theme < ActiveRecord::Base
     new_css = "public/stylesheets/#{theme_name}.css"
 
     FileUtils.cp default_css, new_css
-
+    
+    # replace "default" to new theme name in css content
     css = File.read(new_css).gsub("default",theme_name)
 
     File.open new_css, "w" do |f|

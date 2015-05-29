@@ -13,7 +13,7 @@ class Action < ActiveRecord::Base
     Action.where(confirmed: true).group(:user_id).sum(:points) 
   end
   
-  def self.current(activity_id, user_id)
+  def current(activity_id, user_id)
     Action.where(activity_id: activity_id, user_id: user_id).first
   end
   
